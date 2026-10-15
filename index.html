@@ -320,5 +320,15 @@ $('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify
 $('importBtn').addEventListener('click',()=>{const file=$('importFile').files[0];if(!file)return alert('Choisis d’abord un fichier JSON.');const reader=new FileReader();reader.onload=()=>{try{const d=JSON.parse(reader.result);if(!Array.isArray(d.vehicles)||!Array.isArray(d.services)||!Array.isArray(d.reminders))throw new Error();if(!Array.isArray(d.logEntries))d.logEntries=[];if(!Array.isArray(d.faultCodes))d.faultCodes=[];if(confirm('Remplacer les données actuelles par cette sauvegarde ?')){data=d;save();alert('Sauvegarde restaurée.')}}catch(e){alert('Fichier non reconnu ou invalide.')}};reader.readAsText(file)});
 $('clearBtn').addEventListener('click',()=>{if(confirm('Effacer définitivement tous les véhicules, entretiens et rappels ?')){data={vehicles:[],services:[],reminders:[],logEntries:[],faultCodes:[]};save()}});
 render();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
 </script>
 </body></html>
