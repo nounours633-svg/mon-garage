@@ -1,10 +1,11 @@
-const CACHE_NAME = "mon-garage-v17";
+const CACHE_NAME = "mon-garage-v18";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./manifest.json",
-  "./icon.svg"
+  "./icon.svg",
+  "./icon-192.png"
 ];
 
 self.addEventListener("install", (event) => {
