@@ -1,22 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <defs>
- <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06132d"/><stop offset=".55" stop-color="#082b60"/><stop offset="1" stop-color="#020b20"/></linearGradient>
- <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#b8cce5"/><stop offset="1" stop-color="#6686ad"/></linearGradient>
- <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#28e7ff"/><stop offset=".5" stop-color="#087cff"/><stop offset="1" stop-color="#0641a5"/></linearGradient>
- <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06132d"/><stop offset=".55" stop-color="#082b60"/><stop offset="1" stop-color="#020b20"/></linearGradient>
+<linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#c5d4e8"/><stop offset="1" stop-color="#718bad"/></linearGradient>
+<linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#35eaff"/><stop offset=".5" stop-color="#087cff"/><stop offset="1" stop-color="#0641a5"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
-<rect x="8" y="8" width="496" height="496" rx="74" fill="url(#bg)" stroke="url(#blue)" stroke-width="10"/>
-<path d="M52 190 256 55 460 190" fill="none" stroke="url(#silver)" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M91 191v122h330V191" fill="#061b39" stroke="#1b6ab7" stroke-width="8"/>
-<path d="M112 219h288M112 245h288M112 271h288" stroke="#0b3d78" stroke-width="9"/>
-<path d="M130 328l18-58q8-24 35-27l53-7h42l53 7q27 3 35 27l18 58v45H130z" fill="url(#silver)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
-<path d="M183 252q5-13 20-15l53-6 53 6q15 2 20 15l14 40H169z" fill="#08274d" stroke="#28bfff" stroke-width="6"/>
-<path d="M142 325h228l-18 35H160z" fill="#071a35"/>
-<path d="M144 320h52l-8 20h-51zM316 320h52l7 20h-51z" fill="#18dfff" filter="url(#glow)"/>
-<circle cx="175" cy="375" r="18" fill="#07101f" stroke="#8ba8cb" stroke-width="6"/><circle cx="337" cy="375" r="18" fill="#07101f" stroke="#8ba8cb" stroke-width="6"/>
-<g transform="translate(45 282)"><rect width="92" height="91" rx="13" fill="#f4f8ff" stroke="#087cff" stroke-width="7"/><rect width="92" height="23" rx="10" fill="#087cff"/><path d="M20 39h12m12 0h12m12 0h12M20 57h12m12 0h12m12 0h12" stroke="#31577f" stroke-width="7" stroke-linecap="round"/><circle cx="73" cy="70" r="18" fill="#087cff"/><path d="m64 70 7 7 13-16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></g>
-<g transform="translate(382 272) rotate(25)"><path d="M0 0q-14-17 0-34l14 17 17-5 5-17q25 11 12 36L31 15 92 90q9 12-3 22t-22-2L8 33z" fill="url(#silver)" stroke="#fff" stroke-width="6"/></g>
-<text x="256" y="438" text-anchor="middle" font-family="Arial,sans-serif" font-size="65" font-weight="800" fill="url(#silver)" stroke="#06132d" stroke-width="2" paint-order="stroke">Mon Garage</text>
-<path d="M91 452h330" stroke="url(#blue)" stroke-width="7" stroke-linecap="round"/>
-<text x="256" y="480" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#e9f3ff">CARNET D’ENTRETIEN COMPLET</text>
+<rect x="5" y="5" width="502" height="502" rx="66" fill="url(#bg)" stroke="url(#blue)" stroke-width="7"/>
+<path d="M55 171 256 48 457 171" fill="none" stroke="url(#silver)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M82 169v145h348V169" fill="#061b39" stroke="#b9cce5" stroke-width="8"/>
+<path d="M104 207h304M104 238h304M104 269h304" stroke="#168fe2" stroke-width="10"/>
+<path d="M133 294q5-25 31-31l44-9q48-9 96 0l44 9q26 6 31 31l9 63H124z" fill="url(#blue)" stroke="#eaf6ff" stroke-width="5"/>
+<path d="M182 263q8-13 24-15l50-5 50 5q16 2 24 15l18 35H164z" fill="#071a35" stroke="#51cfff" stroke-width="5"/>
+<path d="M131 319h250l-12 27H143z" fill="#06132d"/>
+<path d="M137 311h49l-7 18h-39zM326 311h49l-3 18h-39z" fill="#dffaff" filter="url(#glow)"/>
+<path d="M115 363q-8 35 30 44h209q42-9 35-44" fill="none" stroke="#087cff" stroke-width="9"/>
+<g transform="translate(385 255) rotate(24)"><path d="M0 0q-18-22 0-43l18 18 19-5 6-20q29 13 14 43L39 12l61 76q11 14-3 26t-27-2L12 39z" fill="url(#silver)" stroke="#fff" stroke-width="5"/></g>
+<g transform="translate(365 348)" fill="url(#silver)" stroke="#fff" stroke-width="3"><path d="M0-38 12-34 23-43 39-28 34-15 42-4 58 0 58 22 43 27 38 40 43 54 27 69 14 60 0 65-5 80-27 80-32 65-45 60-58 68-74 53-68 40-73 27-88 22-88 0-73-5-68-18-74-31-58-47-45-39-32-44-27-59-5-59z"/><circle r="34" fill="#071a35" stroke="#aebfd5" stroke-width="6"/></g>
+<text x="250" y="431" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="800" fill="url(#silver)">Mon</text>
+<text x="250" y="481" text-anchor="middle" font-family="Arial,sans-serif" font-size="54" font-weight="900" fill="url(#blue)">Garage</text>
 </svg>
