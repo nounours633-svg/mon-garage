@@ -370,6 +370,18 @@ function dueState(r){
  if(r.km&&v&&v.km!==''&&v.km!=null){const left=Number(r.km)-Number(v.km);if(left>=0&&left<=1000)return 'Bientôt';}
  return 'À prévoir';
 }
+function vehicleAlertCount(v){
+ const today=new Date();today.setHours(0,0,0,0);
+ const reminders=(data.reminders||[]).filter(r=>r.vehicleId===v.id);
+ let count=reminders.filter(r=>dueState(r)!=='À prévoir').length;
+ const hasCtReminder=reminders.some(r=>/contrôle technique|controle technique/i.test(r.title||''));
+ if(v.ctDate&&!hasCtReminder){
+  const ct=new Date(v.ctDate+'T00:00:00');
+  const days=Math.ceil((ct-today)/86400000);
+  if(days<=30)count++;
+ }
+ return count;
+}
 function reminderClass(r){const state=dueState(r);return state==='En retard'||state==='Kilométrage atteint'?'bad':state==='Bientôt'?'warn':''}
 function reminderProgress(r){const v=vehicle(r.vehicleId);const parts=[];if(r.date)parts.push('Date : '+dateFR(r.date));if(r.km){const target=Number(r.km);parts.push('Échéance : '+target.toLocaleString('fr-FR')+' km');if(v&&v.km!==''&&v.km!=null){const left=target-Number(v.km);parts.push(left<=0?'Kilométrage dépassé de '+Math.abs(left).toLocaleString('fr-FR')+' km':left.toLocaleString('fr-FR')+' km restants');}}return parts.join(' • ')}
 function renderVehiclePicker(){
@@ -406,7 +418,7 @@ function renderHomeVehicleCarousel(){
  const list=data.vehicles||[];
  if(!list.length){track.innerHTML='<div class="empty" style="width:100%">Aucun véhicule enregistré. Ajoute-en un dans « Mes véhicules ».</div>';if(counter)counter.textContent='0 / 0';if(dots)dots.innerHTML='';return;}
  track.innerHTML=list.map(v=>{
-  const alerts=(data.reminders||[]).filter(r=>r.vehicleId===v.id&&dueState(r)!=='À prévoir');
+  const alerts=vehicleAlertCount(v);
   const details=[v.brand,v.model,v.year].filter(Boolean).map(esc).join(' • ');
   const badge=alerts.length?'<span class="vehicle-bell-count">'+alerts.length+'</span>':'';
   return '<article class="home-vehicle-slide">'+(v.photo?'<img class="home-vehicle-photo" src="'+v.photo+'" alt="Photo de '+esc(v.name)+'">':'<div class="home-vehicle-placeholder" aria-hidden="true">🚘</div>')+
