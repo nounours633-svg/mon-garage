@@ -420,9 +420,10 @@ function renderHomeVehicleCarousel(){
  track.innerHTML=list.map(v=>{
   const alerts=vehicleAlertCount(v);
   const details=[v.brand,v.model,v.year].filter(Boolean).map(esc).join(' • ');
-  const badge=alerts.length?'<span class="vehicle-bell-count">'+alerts.length+'</span>':'';
+  const badge=alerts?'<span class="vehicle-bell-count">'+alerts+'</span>':'';
+  const bell=alerts?'<button class="home-vehicle-bell has-alert" type="button" aria-label="'+alerts+' rappel(s) à surveiller" title="'+alerts+' rappel(s) à surveiller" onclick="showTab(&quot;reminders&quot;)">🔔'+badge+'</button>':'';
   return '<article class="home-vehicle-slide">'+(v.photo?'<img class="home-vehicle-photo" src="'+v.photo+'" alt="Photo de '+esc(v.name)+'">':'<div class="home-vehicle-placeholder" aria-hidden="true">🚘</div>')+
-   '<div class="home-vehicle-info"><h4>'+esc(v.name||'Véhicule')+'</h4><p>'+details+(v.plate?' • '+esc(v.plate):'')+(v.km?'\n'+Number(v.km).toLocaleString('fr-FR')+' km':'')+'</p><div class="home-vehicle-actions"><button class="primary" type="button" onclick="openVehicleProfile(&quot;'+v.id+'&quot;)">Ouvrir la fiche</button><button class="home-vehicle-bell '+(alerts.length?'has-alert':'')+'" type="button" aria-label="'+(alerts.length?alerts.length+' notification(s)':'Aucune notification')+'" title="'+(alerts.length?alerts.length+' rappel(s) à surveiller':'Aucune notification')+'" onclick="showTab(&quot;reminders&quot;)">🔔'+badge+'</button></div></div></article>';
+   '<div class="home-vehicle-info"><h4>'+esc(v.name||'Véhicule')+'</h4><p>'+details+(v.plate?' • '+esc(v.plate):'')+(v.km?'\n'+Number(v.km).toLocaleString('fr-FR')+' km':'')+'</p><div class="home-vehicle-actions"><button class="primary" type="button" onclick="openVehicleProfile(&quot;'+v.id+'&quot;)">Ouvrir la fiche</button>'+bell+'</div></div></article>';
  }).join('');
  if(counter)counter.textContent='1 / '+list.length;
  if(dots)dots.innerHTML=list.map((v,i)=>'<button type="button" class="vehicle-carousel-dot '+(i===0?'active':'')+'" aria-label="Afficher le véhicule '+(i+1)+'" onclick="goToHomeVehicle('+i+')"></button>').join('');
@@ -438,11 +439,11 @@ function renderVehicleCarousel(){
  const list=data.vehicles||[];
  if(!list.length){track.innerHTML='<div class="empty" style="width:100%">Aucun véhicule enregistré. Ajoute ton premier véhicule juste en dessous.</div>';if(counter)counter.textContent='0 / 0';if(dots)dots.innerHTML='';return;}
  track.innerHTML=list.map((v,i)=>{
-  const alerts=(data.reminders||[]).filter(r=>r.vehicleId===v.id&&dueState(r)!=='À prévoir');
+  const alerts=vehicleAlertCount(v);
   const details=[v.brand,v.model,v.year].filter(Boolean).map(esc).join(' • ');
-  const bell=alerts.length?'<span class="vehicle-bell-count">'+alerts.length+'</span>':'';
+  const bell=alerts?'<button class="vehicle-bell has-alert" type="button" aria-label="'+alerts+' rappel(s) à surveiller" title="'+alerts+' rappel(s) à surveiller" onclick="showTab(\\'reminders\\')">🔔<span class="vehicle-bell-count">'+alerts+'</span></button>':'';
   return '<article class="vehicle-carousel-slide">'+(v.photo?'<img class="vehicle-carousel-photo" src="'+v.photo+'" alt="Photo de '+esc(v.name)+'">':'<div class="vehicle-carousel-placeholder" aria-hidden="true">🚘</div>')+
-   '<div class="vehicle-carousel-info"><h3>'+esc(v.name||'Véhicule')+'</h3><p>'+details+(v.plate?' • '+esc(v.plate):'')+(v.km?'\n'+Number(v.km).toLocaleString('fr-FR')+' km':'')+'</p><div class="vehicle-carousel-actions"><button class="primary vehicle-carousel-open" type="button" onclick="openVehicleProfile(\''+v.id+'\')">Ouvrir la fiche</button><button class="vehicle-bell '+(alerts.length?'has-alert':'')+'" type="button" aria-label="'+(alerts.length?alerts.length+' notification(s)':'Aucune notification')+'" title="'+(alerts.length?alerts.length+' rappel(s) à surveiller':'Aucune notification')+'" onclick="showTab(\'reminders\')">🔔'+bell+'</button></div></div></article>';
+   '<div class="vehicle-carousel-info"><h3>'+esc(v.name||'Véhicule')+'</h3><p>'+details+(v.plate?' • '+esc(v.plate):'')+(v.km?'\n'+Number(v.km).toLocaleString('fr-FR')+' km':'')+'</p><div class="vehicle-carousel-actions"><button class="primary vehicle-carousel-open" type="button" onclick="openVehicleProfile(\''+v.id+'\')">Ouvrir la fiche</button>'+bell+'</div></div></article>';
  }).join('');
  if(counter)counter.textContent='1 / '+list.length;
  if(dots)dots.innerHTML=list.map((v,i)=>'<button type="button" class="vehicle-carousel-dot '+(i===0?'active':'')+'" aria-label="Afficher le véhicule '+(i+1)+'" onclick="goToVehicleSlide('+i+')"></button>').join('');
