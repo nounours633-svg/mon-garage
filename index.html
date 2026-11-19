@@ -16,6 +16,41 @@ main{max-width:850px;margin:auto;padding:12px 12px 28px}nav{display:flex;gap:7px
 @media(max-width:420px){main{padding-left:10px;padding-right:10px}.card{padding:12px}.home-action{min-height:98px;font-size:13px}.home-action small{font-size:10px}.grid2{gap:8px}.bottom-nav button{font-size:10px}}
 
 .parts-shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.parts-shop-grid button{margin-top:0;min-height:54px;padding:11px 8px;font-size:13px}@media(max-width:360px){.parts-shop-grid{grid-template-columns:1fr}}
+
+/* Tableau de bord retenu : maquettes 1 + 4, bleu nuit et platinum */
+.dashboard-home{padding-bottom:18px}
+.dashboard-home .dashboard-topline{display:flex;align-items:center;justify-content:space-between;padding:13px 4px 17px}
+.dashboard-eyebrow{display:block;color:#a9bad0;font-size:9px;font-weight:850;letter-spacing:2px;margin-bottom:6px}
+.dashboard-topline h2{font-size:29px;letter-spacing:-1px;margin:0;color:#f3f6fb}
+.dashboard-topline p{margin:5px 0 0;color:#aebbd0;font-size:12px}
+.dashboard-bell{position:relative;width:48px;height:48px;border-radius:16px;border:1px solid #53647a;background:linear-gradient(145deg,#202f45,#121f32);color:#f2f5fa;font-size:24px}
+.dashboard-bell i{display:none;position:absolute;width:9px;height:9px;border-radius:50%;right:8px;top:7px;background:#f4c44e;box-shadow:0 0 0 3px #202f45}
+.dashboard-bell.has-alert i{display:block}.dashboard-bell.has-alert{color:#f4c44e;border-color:#9a7b38}
+.dashboard-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 22px}
+.dashboard-stat{min-width:0;text-align:left;padding:13px 10px;border:1px solid #34455d;border-radius:16px;background:linear-gradient(145deg,#1c2b41,#121f32);color:#f3f6fb}
+.dashboard-stat span{display:block;color:#a9bad0;font-size:8px;font-weight:800;letter-spacing:1px}
+.dashboard-stat strong{display:block;margin:7px 0 4px;font-size:23px;letter-spacing:-.7px;overflow-wrap:anywhere}
+.dashboard-stat small{display:block;color:#aebbd0;font-size:9px}
+.dashboard-section-heading{display:flex;justify-content:space-between;align-items:end;gap:8px;margin:18px 2px 8px}
+.dashboard-section-heading h3,.dashboard-search h3{font-size:17px;margin:0;color:#f1f4f8}
+.dashboard-text-link{background:transparent;border:0;color:#b9c9dd;font-size:11px;font-weight:750;padding:5px 0}
+.dashboard-vehicles>.quick-vehicle{margin:0 0 8px;padding:13px;border:1px solid #34455d;border-radius:16px;background:linear-gradient(145deg,#1b2a40,#121e30)}
+.dashboard-vehicles .secondary{background:#dce5f0;color:#172338;border:0}
+.dashboard-reminders{padding:4px 13px;border:1px solid #34455d;border-radius:16px;background:linear-gradient(145deg,#1b2a40,#121e30)}
+.dashboard-reminders>div{padding:11px 0!important;border-bottom:1px solid #34445a!important}
+.dashboard-reminders>div:last-child{border-bottom:0!important}
+.dashboard-reminders .pill{white-space:nowrap}
+.dashboard-shortcuts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:16px 0}
+.dashboard-shortcuts button{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;padding:10px 3px;border:1px solid #34455d;border-radius:13px;background:#17263b;color:#cbd5e2;font-size:9px;font-weight:700}
+.dashboard-shortcuts button span{font-size:19px;color:#b9d5f5}
+.dashboard-search{padding:14px;border:1px solid #34455d;border-radius:16px;background:linear-gradient(145deg,#1b2a40,#121e30);margin:15px 0}
+.dashboard-search input{margin-top:10px;background:#0d1a2c;border-color:#46566d}
+.dashboard-recent{padding:0 12px;border:1px solid #34455d;border-radius:16px;background:linear-gradient(145deg,#1b2a40,#121e30)}
+.dashboard-recent>div{padding:11px 0!important;border-bottom:1px solid #34445a!important}
+.dashboard-recent>div:last-child{border-bottom:0!important}
+.dashboard-recent .secondary{background:#dce5f0;color:#172338;border:0}
+@media(max-width:390px){.dashboard-stat{padding:11px 8px}.dashboard-stat strong{font-size:20px}.dashboard-shortcuts button{font-size:8px}}
+
 </style>
 
 <style id="bleu-nuit-platinum-theme">
@@ -145,22 +180,30 @@ button.primary,button.secondary,button.danger{border-radius:13px!important;trans
 <button data-tab="backup">Sauvegarde</button>
 </nav>
 
-<section id="home" class="panel active">
-<div class="card welcome dashboard-hero"><div class="hero-copy"><span class="hero-kicker"><span class="status-dot"></span> TON ESPACE AUTOMOBILE</span><h2>Tout ton garage.<br><span>En un seul endroit.</span></h2><p>Véhicules, entretiens, réparations et dépenses : retrouve tout en quelques secondes.</p><button class="hero-cta" type="button" onclick="showTab('vehicles')">🚘　Accéder à mes véhicules <span>↗</span></button></div><div class="hero-art" aria-hidden="true"><div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div><div class="hero-car">🚘</div><div class="hero-glow"></div></div></div>
-<div class="home-actions">
-<button class="home-action" onclick="showTab('vehicles')"><span>🚘</span><b>Mes véhicules</b><small>Ouvrir les fiches</small></button>
-<button class="home-action purple" onclick="showTab('historyPicker')"><span>🕘</span><b>Historique</b><small>Choisir un véhicule</small></button>
-<button class="home-action green" onclick="showTab('charts')"><span>💶</span><b>Dépenses</b><small>Suivre les coûts</small></button>
-<button class="home-action red" onclick="showTab('faults')"><span>🧰</span><b>Codes défauts</b><small>Enregistrer / rechercher</small></button>
-<button class="home-action orange" onclick="showTab('reminders')"><span>🔔</span><b>Rappels</b><small>Échéances à venir</small></button>
-<button class="home-action cyan" onclick="document.getElementById('generalSearch').focus();document.getElementById('generalSearch').scrollIntoView({behavior:'smooth',block:'center'})"><span>🔎</span><b>Recherche</b><small>Véhicule, pièce, code</small></button>
-<button class="home-action" onclick="showTab('parts')"><span>🧰</span><b>Pièces détachées</b><small>4 sites de recherche</small></button>
+<section id="home" class="panel active dashboard-home">
+<div class="dashboard-topline">
+ <div><span class="dashboard-eyebrow">MON GARAGE</span><h2>Vue rapide</h2><p>Tout ton garage, en un seul endroit.</p></div>
+ <button id="dashboardBell" class="dashboard-bell" type="button" aria-label="Ouvrir les rappels" onclick="showTab('reminders')">♧<i></i></button>
 </div>
-<div class="stats"><div class="stat clickable" role="button" tabindex="0" onclick="showTab('vehicles')"><span class="muted">Mes véhicules</span><strong id="statVehicles">0</strong></div><div class="stat"><span class="muted">Dépenses</span><strong id="statCosts">0 €</strong></div><div class="stat clickable" role="button" tabindex="0" onclick="showTab('reminders')"><span class="muted">Rappels</span><strong id="statDue">0</strong></div></div>
-<div class="card"><h2>🔎 Recherche générale</h2><input id="generalSearch" type="search" placeholder="Opel Vivaro, vidange, P0401…" oninput="searchEverything(this.value)"><div id="generalSearchResults"></div></div>
-<div class="card"><h2>🚘 Mes véhicules</h2><div id="homeVehicles"></div><button class="secondary" onclick="showTab('vehicles')">Voir tous les véhicules</button></div>
-<div class="card"><h2>⏰ Prochains rappels</h2><div id="upcoming"></div><button class="secondary" onclick="showTab('reminders')">Tous les rappels</button></div>
-<div class="card"><h2>🧾 Dernières interventions</h2><p class="small">Retrouve rapidement les derniers entretiens et réparations enregistrés.</p><div id="recentInterventions"></div><button class="secondary" onclick="showTab('historyPicker')">Ouvrir un historique</button></div>
+<div class="dashboard-stats">
+ <button class="dashboard-stat" type="button" onclick="showTab('vehicles')"><span>VÉHICULES</span><strong id="statVehicles">0</strong><small>Voir mes véhicules　↗</small></button>
+ <div class="dashboard-stat"><span>DÉPENSES</span><strong id="statCosts">0 €</strong><small>Total enregistré</small></div>
+ <button class="dashboard-stat" type="button" onclick="showTab('reminders')"><span>RAPPELS</span><strong id="statDue">0</strong><small>Échéances　↗</small></button>
+</div>
+<div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">TON PARC</span><h3>Mes véhicules</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('vehicles')">Tout voir　↗</button></div>
+<div id="homeVehicles" class="dashboard-vehicles"></div>
+<div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">À GARDER À L’ŒIL</span><h3>Prochains rappels</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('reminders')">Tout voir　↗</button></div>
+<div class="dashboard-reminders" id="upcoming"></div>
+<div class="dashboard-shortcuts">
+ <button type="button" onclick="showTab('historyPicker')"><span>◷</span>Historique</button>
+ <button type="button" onclick="showTab('faults')"><span>⚠</span>Codes défauts</button>
+ <button type="button" onclick="showTab('charts')"><span>▥</span>Dépenses</button>
+ <button type="button" onclick="showTab('parts')"><span>⚙</span>Pièces</button>
+ <button type="button" onclick="showTab('backup')"><span>☁</span>Sauvegarde</button>
+</div>
+<div class="dashboard-search"><div><span class="dashboard-eyebrow">ACCÈS DIRECT</span><h3>Recherche</h3></div><input id="generalSearch" type="search" placeholder="Véhicule, entretien, code défaut…" oninput="searchEverything(this.value)"><div id="generalSearchResults"></div></div>
+<div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">ACTIVITÉ RÉCENTE</span><h3>Dernières interventions</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('historyPicker')">Historique　↗</button></div>
+<div id="recentInterventions" class="dashboard-recent"></div>
 </section>
 
 <section id="vehicleProfile" class="panel">
@@ -361,6 +404,7 @@ $('statVehicles').textContent=data.vehicles.length;
 $('homeVehicles').innerHTML=data.vehicles.length?data.vehicles.map(v=>`<div class="card quick-vehicle">${v.photo?`<img class="vehicle-thumb" src="${v.photo}" alt="Photo de ${esc(v.name)}">`:''}<div style="flex:1;min-width:0"><h3>${esc(v.name)}</h3><div class="muted">${[v.brand,v.model,v.year].filter(Boolean).map(esc).join(' • ')||esc(v.type)}${v.km?' • '+Number(v.km).toLocaleString('fr-FR')+' km':''}</div></div><button class="secondary" type="button" onclick="openVehicleProfile('${v.id}')">Tout voir</button></div>`).join(''):'<div class="empty">Aucun véhicule enregistré. Ajoute-en un dans « Mes véhicules ».</div>';
 $('statCosts').textContent=euro([...(data.services||[]),...(data.logEntries||[])].reduce((s,x)=>s+Number(x.cost||0),0));
 $('statDue').textContent=data.reminders.length;
+const dashboardBell=$('dashboardBell');if(dashboardBell){const hasAlert=data.reminders.some(r=>dueState(r)!=='À prévoir');dashboardBell.classList.toggle('has-alert',hasAlert);dashboardBell.setAttribute('aria-label',hasAlert?'Rappels avec échéance à surveiller':'Aucun rappel urgent');}
 const faultMount=$('vehicleFaultFormMount');if(faultMount&&$('faultFormCard'))faultMount.appendChild($('faultFormCard'));
 $('serviceVehicle').innerHTML=options();$('reminderVehicle').innerHTML=options();$('logVehicle').innerHTML=options();$('faultVehicle').innerHTML=options();$('logFilter').innerHTML='<option value="all">Tous les véhicules</option>'+options();const partsVehicle=$('partsVehicle');if(partsVehicle){const chosen=partsVehicle.value||selectedVehicleId;partsVehicle.innerHTML=options(chosen);if(chosen&&!vehicle(chosen))partsVehicle.value='';}
 $('vehicleList').innerHTML='';renderVehiclePicker();renderVehicleCarousel();
