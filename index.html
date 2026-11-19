@@ -693,8 +693,13 @@ $('importBtn').addEventListener('click',()=>{const file=$('importFile').files[0]
 $('clearBtn').addEventListener('click',()=>{if(confirm('Effacer définitivement tous les véhicules, entretiens, réparations, rappels et codes défauts ?')){data={vehicles:[],services:[],reminders:[],logEntries:[],faultCodes:[]};selectedVehicleId='';save()}});
 render();
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js');
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' });
+      await registration.update();
+    } catch (error) {
+      console.warn('Mise à jour du service worker impossible :', error);
+    }
   });
 }
 </script>
