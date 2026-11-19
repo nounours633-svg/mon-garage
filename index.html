@@ -239,11 +239,11 @@ button.primary,button.secondary,button.danger{border-radius:13px!important;trans
 <section id="historyPicker" class="panel">
 <div class="card">
 <div class="actions"><button class="secondary" type="button" onclick="showTab('home')">← Retour à l’accueil</button></div>
-<h2>🕘 Historique d’un véhicule</h2>
-<p class="small">Recherche par nom ou immatriculation. Le bouton ouvre uniquement l’historique du véhicule choisi.</p>
-<label for="historyVehicleSearch">Nom ou immatriculation</label>
-<input id="historyVehicleSearch" type="search" placeholder="Ex. Opel Vivaro ou AB-123-CD" autocomplete="off" oninput="renderHistoryVehiclePicker()">
-<div id="historyVehicleResults"><div class="empty">Tape un nom ou une immatriculation pour choisir un véhicule.</div></div>
+<div class="vehicle-carousel-heading"><div><span class="vehicle-carousel-kicker">MON GARAGE</span><h2>🕘 Historique d’un véhicule</h2><p class="small">Fais glisser les véhicules vers la gauche ou la droite pour choisir celui dont tu veux consulter l’historique.</p></div><span class="vehicle-carousel-counter" id="historyVehicleCounter">0 / 0</span></div>
+<label for="historyVehicleSearch">Rechercher un véhicule (facultatif)</label>
+<input id="historyVehicleSearch" type="search" placeholder="Nom ou immatriculation" autocomplete="off" oninput="renderHistoryVehiclePicker()">
+<div class="vehicle-carousel-window" id="historyVehicleWindow" onscroll="updateHistoryVehicleCarousel()"><div class="vehicle-carousel-track" id="historyVehicleTrack"><div class="empty">Aucun véhicule enregistré.</div></div></div>
+<div class="vehicle-carousel-controls"><button class="secondary" type="button" aria-label="Véhicule précédent" onclick="moveHistoryVehicleCarousel(-1)">‹</button><div class="vehicle-carousel-dots" id="historyVehicleDots"></div><button class="secondary" type="button" aria-label="Véhicule suivant" onclick="moveHistoryVehicleCarousel(1)">›</button></div>
 </div>
 </section>
 
@@ -467,12 +467,26 @@ if(selectedVehicleId && $('vehicleProfile').classList.contains('active')) render
 function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
 function showTab(tab){document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===tab));document.querySelectorAll('.bottom-nav button').forEach(x=>x.classList.toggle('active',x.dataset.bottom===tab));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===tab));if(tab==='logbook')renderLogbook();if(tab==='historyPicker')renderHistoryVehiclePicker();if(tab==='historyView')renderVehicleHistoryView();if(tab==='faults')renderFaults();if(tab==='charts')renderExpenseChart();window.scrollTo({top:0,behavior:'smooth'});}
 window.showTab=showTab;
+let historyVehicleIndex=0;
 window.renderHistoryVehiclePicker=function(){
- const input=$('historyVehicleSearch'),root=$('historyVehicleResults');if(!root)return;
+ const input=$('historyVehicleSearch'),track=$('historyVehicleTrack'),windowEl=$('historyVehicleWindow'),counter=$('historyVehicleCounter'),dots=$('historyVehicleDots');if(!track||!windowEl)return;
  const q=(input?.value||'').trim().toLocaleLowerCase('fr');
  const list=(data.vehicles||[]).filter(v=>!q||[v.name,v.plate,v.brand,v.model].some(x=>String(x||'').toLocaleLowerCase('fr').includes(q)));
- root.innerHTML=list.length?list.map(v=>`<div class="card quick-vehicle">${v.photo?`<img class="vehicle-thumb" src="${v.photo}" alt="Photo de ${esc(v.name)}">`:''}<div style="flex:1;min-width:0"><h3>${esc(v.name||'Véhicule')}</h3><div class="muted">${esc([v.brand,v.model].filter(Boolean).join(' • '))}${v.plate?' • '+esc(v.plate):''}</div></div><button class="primary" type="button" onclick="openVehicleHistory('${v.id}')">Voir son historique</button></div>`).join(''):'<div class="card empty">Aucun véhicule trouvé. Vérifie le nom ou l’immatriculation.</div>';
+ historyVehicleIndex=0;
+ track.innerHTML=list.length?list.map(v=>`<article class="vehicle-carousel-slide">${v.photo?`<img class="vehicle-carousel-photo" src="${v.photo}" alt="Photo de ${esc(v.name)}">`:'<div class="vehicle-carousel-placeholder" aria-hidden="true">🚘</div>'}<div class="vehicle-carousel-info"><h3>${esc(v.name||'Véhicule')}</h3><p>${esc([v.brand,v.model,v.year].filter(Boolean).join(' • '))}${v.plate?' • '+esc(v.plate):''}${v.km?'\\n'+Number(v.km).toLocaleString('fr-FR')+' km':''}</p><div class="vehicle-carousel-actions"><button class="primary vehicle-carousel-open" type="button" onclick="openVehicleHistory('${v.id}')">Voir son historique</button></div></div></article>`).join(''):'<div class="empty" style="width:100%">Aucun véhicule trouvé. Vérifie le nom ou l’immatriculation.</div>';
+ windowEl.scrollLeft=0;
+ if(counter)counter.textContent=list.length?'1 / '+list.length:'0 / 0';
+ if(dots)dots.innerHTML=list.map((v,i)=>`<button class="vehicle-carousel-dot ${i===0?'active':''}" type="button" aria-label="Afficher le véhicule ${i+1}" onclick="goToHistoryVehicle(${i})"></button>`).join('');
 };
+window.updateHistoryVehicleCarousel=function(){
+ const el=$('historyVehicleWindow'),track=$('historyVehicleTrack'),counter=$('historyVehicleCounter'),dots=$('historyVehicleDots');if(!el||!track)return;
+ const count=track.querySelectorAll('.vehicle-carousel-slide').length;if(!count)return;
+ historyVehicleIndex=Math.max(0,Math.min(count-1,Math.round(el.scrollLeft/Math.max(1,el.clientWidth))));
+ if(counter)counter.textContent=(historyVehicleIndex+1)+' / '+count;
+ if(dots)[...dots.children].forEach((d,i)=>d.classList.toggle('active',i===historyVehicleIndex));
+};
+window.moveHistoryVehicleCarousel=function(direction){const el=$('historyVehicleWindow');if(el)el.scrollTo({left:el.scrollLeft+direction*el.clientWidth,behavior:'smooth'});};
+window.goToHistoryVehicle=function(index){const el=$('historyVehicleWindow');if(el)el.scrollTo({left:index*el.clientWidth,behavior:'smooth'});};
 window.openVehicleHistory=id=>{if(!vehicle(id)){alert('Véhicule introuvable.');return;}selectedVehicleId=id;showTab('historyView');};
 window.renderVehicleHistoryView=function(){
  const v=vehicle(selectedVehicleId),root=$('vehicleHistoryContent');if(!root)return;
