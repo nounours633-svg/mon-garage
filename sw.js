@@ -1,11 +1,10 @@
-const CACHE_NAME = "mon-garage-v20";
+const CACHE_NAME = "mon-garage-v21";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./manifest.json",
   "./icon.svg",
-  "./icon-192.png",
   "./icon-512.svg"
 ];
 
