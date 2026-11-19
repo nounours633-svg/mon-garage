@@ -206,16 +206,16 @@ button.primary,button.secondary,button.danger{border-radius:13px!important;trans
  <div><span class="dashboard-eyebrow">MON GARAGE</span><h2>Vue rapide</h2><p>Tout ton garage, en un seul endroit.</p></div>
  <button id="dashboardBell" class="dashboard-bell" type="button" aria-label="Ouvrir les rappels" onclick="showTab('reminders')">♧<i></i></button>
 </div>
-<div class="dashboard-stats">
- <button class="dashboard-stat" type="button" onclick="showTab('vehicles')"><span>VÉHICULES</span><strong id="statVehicles">0</strong><small>Voir mes véhicules　↗</small></button>
- <div class="dashboard-stat"><span>DÉPENSES</span><strong id="statCosts">0 €</strong><small>Total enregistré</small></div>
- <button class="dashboard-stat" type="button" onclick="showTab('reminders')"><span>RAPPELS</span><strong id="statDue">0</strong><small>Échéances　↗</small></button>
-</div>
 <div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">TON PARC</span><h3>Mes véhicules</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('vehicles')">Tout voir　↗</button></div>
 <div class="home-vehicle-carousel card">
  <div class="home-vehicle-carousel-head"><div><span class="dashboard-eyebrow">TON PARC</span><h3>Mes véhicules</h3><p>Glisse à droite ou à gauche pour choisir.</p></div><button type="button" class="dashboard-text-link" onclick="showTab('vehicles')">Tout voir ↗</button></div>
  <div class="home-vehicle-window" id="homeVehicleWindow"><div class="home-vehicle-track" id="homeVehicleTrack"><div class="empty">Aucun véhicule enregistré.</div></div></div>
  <div class="home-vehicle-controls"><button class="secondary" type="button" aria-label="Véhicule précédent" onclick="moveHomeVehicle(-1)">‹</button><span id="homeVehicleCounter">0 / 0</span><div id="homeVehicleDots" class="vehicle-carousel-dots"></div><button class="secondary" type="button" aria-label="Véhicule suivant" onclick="moveHomeVehicle(1)">›</button></div>
+</div>
+<div class="dashboard-stats">
+ <button class="dashboard-stat" type="button" onclick="showTab('vehicles')"><span>VÉHICULES</span><strong id="statVehicles">0</strong><small>Voir mes véhicules　↗</small></button>
+ <div class="dashboard-stat"><span>DÉPENSES</span><strong id="statCosts">0 €</strong><small>Total enregistré</small></div>
+ <button class="dashboard-stat" type="button" onclick="showTab('reminders')"><span>RAPPELS</span><strong id="statDue">0</strong><small>Échéances　↗</small></button>
 </div>
 <div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">À GARDER À L’ŒIL</span><h3>Prochains rappels</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('reminders')">Tout voir　↗</button></div>
 <div class="dashboard-reminders" id="upcoming"></div>
