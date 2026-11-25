@@ -288,6 +288,83 @@ input,select,textarea{background:#071a36!important;border-color:#376393!importan
 .pill{box-shadow:0 0 8px #087cff22}
 @media(max-width:420px){.home-vehicle-photo,.home-vehicle-placeholder{height:165px!important}.dashboard-topline h2{font-size:31px!important}.dashboard-stat{padding:11px 8px!important}.dashboard-stat strong{font-size:20px!important}.dashboard-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 
+
+/* Maquette bleue lumineuse — finitions mobiles et écrans */
+:root{--navy:#061633;--blue:#078bff;--bg:#020b1d;--card:#0b2143;--text:#f5f8ff;--muted:#b9cbe3;--line:#28588d}
+body{background:radial-gradient(ellipse at 50% 0%,#174a89 0,#071b3c 38%,#020918 78%)!important}
+header.garage-header{min-height:88px!important;padding:13px 16px!important;background:linear-gradient(110deg,#06152f,#0c2d5a)!important;border-bottom:1px solid #168cff!important}
+.garage-brand-mark{width:58px!important;height:58px!important;border:2px solid #dcecff!important;border-radius:17px!important;font-size:34px!important}
+.garage-header h1{font-size:23px!important;font-weight:800!important}
+.garage-header p{font-size:12px!important}
+.dashboard-home .dashboard-topline{display:flex!important;align-items:center!important;justify-content:space-between!important;min-height:112px!important;padding:20px 5px 24px!important}
+.dashboard-topline h2{font-size:32px!important;line-height:1.1!important}
+.dashboard-topline p{font-size:14px!important}
+.dashboard-section-heading{margin:18px 4px 10px!important}
+.home-vehicle-carousel{padding:15px!important;margin:12px 0 18px!important;background:linear-gradient(145deg,#102f5c,#071a36)!important;border:1px solid #4777ad!important;border-radius:22px!important;box-shadow:0 0 22px #087cff26!important}
+.home-vehicle-carousel-head{margin:0 0 12px!important}
+.home-vehicle-carousel-head .dashboard-eyebrow{display:none!important}
+.home-vehicle-carousel-head h3{font-size:21px!important}
+.home-vehicle-carousel-head p{font-size:13px!important}
+.home-vehicle-window{width:100%!important;overflow-x:auto!important;scroll-snap-type:x mandatory!important;scrollbar-width:none!important}
+.home-vehicle-window::-webkit-scrollbar{display:none!important}
+.home-vehicle-track{display:flex!important;gap:12px!important}
+.home-vehicle-slide{flex:0 0 100%!important;width:100%!important;min-width:100%!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:0!important;overflow:hidden!important;border:1px solid #3988d5!important;border-radius:18px!important;background:linear-gradient(145deg,#10294d,#07162e)!important;scroll-snap-align:start!important;box-shadow:0 0 17px #087cff38!important}
+.home-vehicle-photo,.home-vehicle-placeholder{display:block!important;width:100%!important;height:190px!important;max-height:190px!important;flex:0 0 190px!important;object-fit:cover!important;border:0!important;border-radius:0!important}
+.home-vehicle-info{padding:13px 15px 15px!important}
+.home-vehicle-info h4{font-size:21px!important;margin:0 0 5px!important}
+.home-vehicle-info p{font-size:13px!important;line-height:1.5!important;white-space:pre-line!important;margin:0 0 10px!important}
+.home-vehicle-actions{display:flex!important;align-items:center!important;gap:10px!important}
+.home-vehicle-actions .primary{margin:0!important;min-height:44px!important;border-radius:14px!important;background:linear-gradient(110deg,#087dff,#25aaff)!important;color:#fff!important;box-shadow:0 0 17px #087cff88!important}
+.home-vehicle-controls{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;margin-top:12px!important}
+.home-vehicle-controls>button{width:38px!important;min-width:38px!important;height:40px!important;min-height:40px!important;padding:0!important;margin:0!important;border-radius:13px!important;font-size:23px!important}
+.home-vehicle-controls #homeVehicleCounter{font-size:12px!important;white-space:nowrap!important}
+.home-vehicle-controls .vehicle-carousel-dots{display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-width:0!important;flex:0 1 auto!important}
+.home-vehicle-controls .vehicle-carousel-dot{appearance:none!important;display:block!important;flex:0 0 10px!important;width:10px!important;min-width:10px!important;height:10px!important;min-height:10px!important;padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;background:#62738c!important;box-shadow:none!important}
+.home-vehicle-controls .vehicle-carousel-dot.active{flex-basis:23px!important;width:23px!important;min-width:23px!important;height:10px!important;border-radius:8px!important;background:#e3f1ff!important;box-shadow:0 0 13px #58baff!important}
+.dashboard-stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;margin:18px 0 22px!important}
+.dashboard-stat{min-width:0!important;padding:12px 10px!important;border-radius:18px!important;background:linear-gradient(145deg,#17365e,#0a1c36)!important;border:1px solid #42678f!important}
+.dashboard-stat span{font-size:9px!important;letter-spacing:1px!important}
+.dashboard-stat strong{font-size:23px!important}
+.dashboard-stat small{font-size:10px!important}
+.dashboard-reminders{padding:8px 14px!important;border-radius:18px!important}
+.dashboard-shortcuts{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important}
+.dashboard-shortcuts button{min-height:82px!important;border-radius:15px!important;background:linear-gradient(145deg,#10427d,#091b37)!important;border:1px solid #2687d9!important;box-shadow:0 0 14px #087cff2b!important}
+.dashboard-shortcuts button span{font-size:25px!important;color:#8fd5ff!important}
+.bottom-nav{background:linear-gradient(180deg,#07172ff7,#020918)!important;border-top:1px solid #438ed2!important;box-shadow:0 -5px 24px #087cff35!important;padding:9px 5px calc(9px + env(safe-area-inset-bottom))!important}
+.bottom-nav button.active{color:#54dcff!important;text-shadow:0 0 13px #16aaff!important}
+.bottom-nav button.active span{filter:drop-shadow(0 0 7px #24aaff)!important}
+/* Liste véhicules : recherche puis cartes, sans second carrousel */
+#vehicles .vehicle-carousel-card{display:none!important}
+#vehicles>.card{border-radius:19px!important}
+#vehicles #vehicleSearchResults{display:grid!important;gap:9px!important}
+#vehicles .vehicle-directory-card{display:flex!important;align-items:center!important;gap:12px!important;padding:11px!important;margin:0!important;border-radius:16px!important;background:linear-gradient(145deg,#12335e,#091b35)!important;border:1px solid #3478b9!important}
+#vehicles .vehicle-directory-card .vehicle-thumb{width:112px!important;height:82px!important;object-fit:cover!important;border-radius:12px!important}
+#vehicles .vehicle-directory-card h3{font-size:16px!important}
+#vehicles .vehicle-directory-card .primary{margin:0!important;white-space:nowrap!important}
+/* Fiche véhicule façon écran de détail */
+#vehicleProfile>.card{padding:13px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+#vehicleProfileContent>h2{font-size:22px!important;margin:12px 0!important}
+#vehicleProfileContent .vehicle-hero{display:block!important;width:100%!important;max-height:245px!important;object-fit:cover!important;border-radius:18px!important;border:1px solid #4399e6!important;box-shadow:0 0 20px #087cff55!important}
+#vehicleProfileContent .profile-summary>.card{border-radius:17px!important}
+#vehicleProfileContent .home-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+#vehicleProfileContent .home-action{min-height:88px!important;border-radius:15px!important;background:linear-gradient(145deg,#123d70,#081b37)!important;border:1px solid #3486cb!important;color:#f5f8ff!important}
+#vehicleProfileContent .home-action span{font-size:24px!important;color:#8bd2ff!important}
+#vehicleProfileContent .home-action small{color:#c1d6ef!important}
+/* Historique, rappels et dépenses */
+#historyPicker>.card,#historyView>.card,#reminders>.card,#charts>.card{border-radius:19px!important;background:linear-gradient(145deg,#102e58,#071a35)!important;border:1px solid #3b6c9f!important}
+.history-heading{padding:8px 2px!important}
+.history-metrics{gap:8px!important}
+.history-metrics>div{background:#0b2850!important;border:1px solid #315f91!important;border-radius:14px!important;padding:10px!important}
+.history-entry{background:linear-gradient(145deg,#12335d,#081a34)!important;border:1px solid #32689e!important;border-radius:15px!important}
+.history-filter{background:#10294c!important;border-color:#416a9a!important}
+.history-filter.active{background:linear-gradient(110deg,#087dff,#24aaff)!important}
+#reminderList>.card{border-radius:16px!important;background:linear-gradient(145deg,#142f53,#091a33)!important;border:1px solid #3b6592!important}
+#charts .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#expenseChart{overflow:hidden!important}
+#expenseByVehicle>.card{border-radius:14px!important;background:linear-gradient(145deg,#12335d,#091a34)!important}
+#more .more-tile{background:linear-gradient(145deg,#12335d,#091a34)!important;border:1px solid #3478b9!important;border-radius:16px!important}
+@media(max-width:420px){.home-vehicle-photo,.home-vehicle-placeholder{height:172px!important;max-height:172px!important;flex-basis:172px!important}.home-vehicle-controls{gap:7px!important}.home-vehicle-controls .vehicle-carousel-dots{gap:5px!important}.dashboard-stat strong{font-size:20px!important}.dashboard-stat{padding:10px 8px!important}}
+
 </style></head>
 <body>
 <header class="garage-header"><div class="garage-brand-mark">⌂</div><div><h1>Mon Garage</h1><p>Carnet d’entretien complet</p></div><button class="garage-settings" type="button" onclick="showTab('more')" aria-label="Plus de fonctions">⚙</button></header>
@@ -307,7 +384,6 @@ input,select,textarea{background:#071a36!important;border-color:#376393!importan
  <div><span class="dashboard-eyebrow">MON GARAGE</span><h2>Vue rapide</h2><p>Tout ton garage, en un seul endroit.</p></div>
  <button id="dashboardBell" class="dashboard-bell" type="button" aria-label="Ouvrir les rappels" onclick="showTab('reminders')">♧<i></i></button>
 </div>
-<div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">TON PARC</span><h3>Mes véhicules</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('vehicles')">Tout voir　↗</button></div>
 <div class="home-vehicle-carousel card">
  <div class="home-vehicle-carousel-head"><div><span class="dashboard-eyebrow">TON PARC</span><h3>Mes véhicules</h3><p>Glisse à droite ou à gauche pour choisir.</p></div><button type="button" class="dashboard-text-link" onclick="showTab('vehicles')">Tout voir ↗</button></div>
  <div class="home-vehicle-window" id="homeVehicleWindow"><div class="home-vehicle-track" id="homeVehicleTrack"><div class="empty">Aucun véhicule enregistré.</div></div></div>
