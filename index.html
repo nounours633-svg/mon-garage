@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101B35">
-<link rel="manifest" href="./manifest.json?v=21">
-<link rel="icon" href="./icon.svg?v=21" type="image/svg+xml">
-<link rel="apple-touch-icon" href="./icon.svg?v=21">
+<meta name="theme-color" content="#091426">
+<link rel="manifest" href="./manifest.json?v=22">
+<link rel="icon" href="./icon.svg?v=22" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg?v=22">
 <title>Mon Garage — Carnet d’entretien complet</title>
 <style>
 :root{--navy:#071a35;--blue:#087cff;--bg:#04152d;--card:#08264d;--text:#f4f8ff;--muted:#b7c9e2;--line:#174779;--green:#08b86b;--orange:#ff9d00;--red:#ff4055}
@@ -189,11 +189,35 @@ button.primary,button.secondary,button.danger{border-radius:13px!important;trans
 @media(max-width:390px){.home-vehicle-slide{gap:9px;padding:10px}.home-vehicle-photo,.home-vehicle-placeholder{width:78px;height:78px;flex-basis:78px}.home-vehicle-info h4{font-size:14px}.home-vehicle-info p{font-size:10px}}
 </style>
 
-</head>
+
+<style id="mon-garage-refonte-2026">
+:root{--mg-bg:#091426;--mg-surface:#14233a;--mg-surface2:#1b2c45;--mg-stroke:#40536d;--mg-blue:#1688ff;--mg-silver:#d5dde8;--mg-muted:#aebbd0}
+body{background:radial-gradient(ellipse at 50% -12%,#294361 0,transparent 48%),#091426;padding-bottom:92px}
+header{padding:16px 18px 14px;background:rgba(9,20,38,.96);border-bottom:1px solid #536984;box-shadow:0 8px 26px #0005}
+header h1{font-size:23px;letter-spacing:-.5px}header p{font-size:12px;color:#b8c7da}
+.primary-nav{display:none!important}
+main{max-width:760px;padding:12px 13px 30px}
+.panel.active{animation:mg-in .2s ease-out}@keyframes mg-in{from{opacity:.72;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:linear-gradient(145deg,#1a2b43,#111e32);border:1px solid #3b4e67;border-radius:19px;box-shadow:0 9px 24px #0003}
+button.primary{background:linear-gradient(135deg,#319bff,#0869db);border:1px solid #7dc1ff;color:#fff;box-shadow:0 5px 16px #087cff44}
+button.secondary{background:linear-gradient(145deg,#273b56,#1a2b42);border:1px solid #536984;color:#f0f5fc}
+input,select,textarea{background:#0b192d;border-color:#435873;border-radius:12px}
+.dashboard-topline{padding-top:9px}.dashboard-topline h2{font-size:28px}
+.dashboard-stat,.dashboard-vehicles>.quick-vehicle,.dashboard-reminders,.dashboard-search,.dashboard-recent{background:linear-gradient(145deg,#1a2b43,#111e32);border-color:#3b4e67;border-radius:16px}
+.home-vehicle-carousel{border-radius:19px}.dashboard-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr))}
+.bottom-nav{z-index:100;display:flex;justify-content:space-around;gap:3px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:rgba(8,18,34,.97);border-top:1px solid #536984;box-shadow:0 -7px 22px #0006;backdrop-filter:blur(16px)}
+.bottom-nav button{flex:1;min-width:0;color:#aebbd0;padding:4px 2px;font-size:10px;font-weight:700;gap:3px}
+.bottom-nav button span{font-size:20px;line-height:22px}.bottom-nav button.active{color:#8ec5ff}.bottom-nav button.active span{filter:drop-shadow(0 0 7px #1688ff)}
+.history-heading{padding:5px 0 12px}.history-heading h2{font-size:25px;margin:7px 0}.history-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:15px 0}.history-metrics>div{background:#0e1c30;border:1px solid #3b4e67;border-radius:13px;padding:11px 8px}.history-metrics span{font-size:10px;color:#aebbd0}.history-metrics strong{display:block;font-size:15px;margin-top:5px;overflow-wrap:anywhere}
+.history-entry{margin:10px 0;padding:15px;border:1px solid #3c526e;border-radius:17px;background:linear-gradient(145deg,#1a2c46,#111f34);box-shadow:0 6px 18px #0003}.history-entry h3{font-size:16px;margin:9px 0 6px}.history-type{display:inline-flex;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:800}.history-type.type-service{background:#123f69;color:#9ed2ff;border:1px solid #287fc2}.history-type.type-repair{background:#55401f;color:#ffd38b;border:1px solid #a77a34}
+.more-heading{padding:12px 4px}.more-heading h2{font-size:26px;margin:5px 0}.more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.more-tile{min-height:125px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:7px;padding:15px;border:1px solid #40536d;border-radius:17px;background:linear-gradient(145deg,#1c2e48,#122039);color:#f2f6fb;text-align:left}.more-tile span{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:#8cbcff1b;border:1px solid #8cbcff55;color:#a8d0ff;font-size:21px}.more-tile b{font-size:14px}.more-tile small{font-size:11px;color:#aebbd0}
+@media(max-width:390px){.history-metrics{gap:5px}.history-metrics>div{padding:9px 6px}.history-metrics strong{font-size:13px}.bottom-nav button{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.panel.active{animation:none}}
+</style></head>
 <body>
 <header><h1>🚗 Mon Garage</h1><p>Le carnet d’entretien de tes véhicules, au même endroit.</p></header>
 <main>
-<nav aria-label="Navigation">
+<nav class="primary-nav" aria-label="Navigation">
 <button class="active" data-tab="home">Vue d’ensemble</button>
 <button data-tab="vehicles">🚘 Véhicules</button>
 <button data-tab="reminders">⏰ Rappels</button>
@@ -346,7 +370,7 @@ button.primary,button.secondary,button.danger{border-radius:13px!important;trans
 <hr><h3>Restaurer une sauvegarde</h3><p class="small">Choisis un fichier JSON précédemment exporté. Les données actuelles seront remplacées.</p><input id="importFile" type="file" accept=".json,application/json"><button class="primary" id="importBtn">Restaurer le fichier</button>
 <hr><h3>Effacer toutes les données</h3><p class="small">Action définitive. Exporte d’abord une sauvegarde si tu veux conserver tes informations.</p><button class="danger" id="clearBtn">Tout effacer</button></div>
 </section>
-<div class="bottom-nav" aria-label="Accès rapide"><button class="active" data-bottom="home" onclick="showTab('home')"><span>⌂</span>Accueil</button><button data-bottom="vehicles" onclick="showTab('vehicles')"><span>🚘</span>Véhicules</button><button data-bottom="historyPicker" onclick="showTab('historyPicker')"><span>◷</span>Historique</button><button data-bottom="home" onclick="showTab('home');document.getElementById('generalSearch').focus();document.getElementById('generalSearch').scrollIntoView({behavior:'smooth',block:'center'})"><span>⌕</span>Recherche</button><button data-bottom="parts" onclick="showTab('parts')"><span>🔧</span>Pièces</button><button data-bottom="backup" onclick="showTab('backup')"><span>☁</span>Sauvegarde</button></div>
+<section id="more" class="panel"><div class="more-heading"><span class="dashboard-eyebrow">MON GARAGE</span><h2>Plus de fonctions</h2><p class="small">Tous les outils complémentaires de ton garage.</p></div><div class="more-grid"><button class="more-tile" onclick="showTab('charts')"><span>▥</span><b>Dépenses</b><small>Suivi et graphiques</small></button><button class="more-tile" onclick="showTab('faults')"><span>⚠</span><b>Codes défauts</b><small>Diagnostics par véhicule</small></button><button class="more-tile" onclick="showTab('parts')"><span>⚙</span><b>Pièces auto</b><small>Accès aux vendeurs</small></button><button class="more-tile" onclick="showTab('backup')"><span>☁</span><b>Sauvegarde</b><small>Exporter ou restaurer</small></button></div></section><div class="bottom-nav" aria-label="Navigation principale"><button class="active" data-bottom="home" onclick="showTab('home')"><span>⌂</span>Accueil</button><button data-bottom="vehicles" onclick="showTab('vehicles')"><span>🚘</span>Véhicules</button><button data-bottom="historyPicker" onclick="showTab('historyPicker')"><span>◷</span>Historique</button><button data-bottom="reminders" onclick="showTab('reminders')"><span>♧</span>Rappels</button><button data-bottom="more" onclick="showTab('more')"><span>•••</span>Plus</button></div>
 <footer>Mon Garage • Application personnelle hors ligne</footer>
 </main>
 <script>
