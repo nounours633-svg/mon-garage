@@ -224,9 +224,73 @@ input,select,textarea{background:#0b192d;border-color:#435873;border-radius:12px
 
 /* Interface validée : une seule navigation, celle du bas */
 .primary-nav{display:none!important}
+
+/* Refonte visuelle fidèle à la maquette bleue lumineuse */
+:root{--navy:#06132b;--bg:#020b1d;--card:#0b2144;--text:#f4f8ff;--muted:#b8c9e2;--line:#174c91;--blue:#087dff}
+html,body{background:#020b1d!important}
+body{background:radial-gradient(ellipse at 50% 12%,#123c79 0,#071a3b 34%,#020b1d 76%)!important;color:#f5f8ff;padding-bottom:98px}
+.garage-header{display:flex;align-items:center;gap:12px;padding:13px 16px!important;background:linear-gradient(100deg,#061631f7,#0b2c5cf5)!important;border-bottom:1px solid #168cff!important;box-shadow:0 0 22px #087cff55!important}
+.garage-brand-mark{width:48px;height:42px;display:grid;place-items:center;border:2px solid #d8eaff;border-radius:12px;color:#fff;font-size:29px;text-shadow:0 0 12px #39a9ff;box-shadow:0 0 14px #168cff66}
+.garage-header>div:nth-child(2){flex:1}.garage-header h1{font-size:21px!important;letter-spacing:-.4px}.garage-header p{font-size:11px!important;margin:2px 0 0!important;color:#c7dcfa!important}
+.garage-settings{width:40px;height:40px;border-radius:50%;border:1px solid #3c9eff;background:#0b3b79;color:#fff;font-size:21px;box-shadow:0 0 14px #087cff77}
+main{max-width:760px!important;padding:12px 12px 30px!important}
+.card,.home-vehicle-carousel,.vehicle-carousel-card,.dashboard-reminders,.dashboard-search{background:linear-gradient(145deg,#102b53,#071a36)!important;border:1px solid #365b8c!important;border-radius:20px!important;box-shadow:0 0 0 1px #8dcaff0b,0 7px 22px #0007,0 0 18px #087cff1b!important}
+.dashboard-home .dashboard-topline{padding:18px 5px 24px!important}
+.dashboard-eyebrow{font-size:10px!important;letter-spacing:2.7px!important;color:#b6cbe8!important}
+.dashboard-topline h2{font-size:34px!important;color:#fff!important;text-shadow:0 0 18px #238dff33}
+.dashboard-topline p{font-size:14px!important;color:#c0d1e9!important}
+.dashboard-bell{width:58px!important;height:58px!important;border-radius:19px!important;background:linear-gradient(145deg,#1b3559,#0a1b34)!important;border-color:#536e91!important;box-shadow:inset 0 0 15px #fff1,0 0 16px #168cff22}
+.dashboard-section-heading{margin:22px 3px 10px!important}
+.dashboard-section-heading h3{font-size:20px!important}
+.home-vehicle-carousel{padding:16px!important;margin:12px 0 20px!important}
+.home-vehicle-carousel-head h3{font-size:21px!important}
+.home-vehicle-carousel-head p{font-size:13px!important;color:#b9cce5!important}
+.home-vehicle-slide{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:0!important;overflow:hidden!important;border:1px solid #3d75b6!important;border-radius:19px!important;background:linear-gradient(145deg,#10294c,#08172d)!important;box-shadow:0 0 18px #087cff33!important}
+.home-vehicle-photo,.home-vehicle-placeholder{width:100%!important;height:190px!important;max-height:190px!important;object-fit:cover!important;border:0!important;border-radius:0!important;flex:auto!important}
+.home-vehicle-info{padding:14px 16px!important}
+.home-vehicle-info h4{font-size:20px!important;color:#fff!important}
+.home-vehicle-info p{font-size:13px!important;color:#c1d3eb!important;line-height:1.55!important}
+.home-vehicle-actions .primary{background:linear-gradient(110deg,#087dff,#29a5ff)!important;border:1px solid #70c4ff!important;box-shadow:0 0 16px #087cff88!important}
+.home-vehicle-controls{margin-top:14px!important}
+.home-vehicle-controls button,.vehicle-carousel-controls button{width:42px!important;height:42px!important;border-radius:15px!important;background:linear-gradient(145deg,#1c3557,#0b1c34)!important;border:1px solid #496b96!important;color:#e8f4ff!important}
+.vehicle-carousel-dot.active{background:#d8eaff!important;box-shadow:0 0 12px #58b5ff}
+.dashboard-stats{gap:8px!important;margin:20px 0 24px!important}
+.dashboard-stat{background:linear-gradient(145deg,#142d50,#091a32)!important;border:1px solid #405f88!important;border-radius:18px!important;box-shadow:0 0 13px #168cff18!important}
+.dashboard-stat span{font-size:9px!important;color:#b9cde8!important}
+.dashboard-stat strong{font-size:25px!important;color:#fff!important}
+.dashboard-stat small{font-size:10px!important;color:#b5c8e2!important}
+.dashboard-reminders{padding:7px 14px!important}
+.dashboard-reminders>div{padding:13px 0!important}
+.dashboard-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important}
+.dashboard-shortcuts button{min-height:82px!important;border-radius:16px!important;background:linear-gradient(145deg,#12386a,#081a35)!important;border:1px solid #247bca!important;box-shadow:0 0 13px #087cff2a!important;color:#f0f7ff!important;font-size:11px!important}
+.dashboard-shortcuts button span{font-size:24px!important;color:#8ed0ff!important;text-shadow:0 0 12px #168cff}
+.bottom-nav{padding:9px 5px calc(9px + env(safe-area-inset-bottom))!important;background:linear-gradient(180deg,#07162df7,#020918)!important;border-top:1px solid #438ed2!important;box-shadow:0 -5px 24px #087cff33!important}
+.bottom-nav button{font-size:11px!important;color:#aebfd8!important;gap:4px!important}
+.bottom-nav button span{font-size:23px!important;text-shadow:0 0 10px #168cff33}
+.bottom-nav button.active{color:#59d9ff!important;text-shadow:0 0 13px #16aaff!important}
+.primary,button.primary{background:linear-gradient(110deg,#006fff,#20a4ff)!important;border:1px solid #71c5ff!important;box-shadow:0 0 13px #087cff55!important}
+.secondary,button.secondary{background:linear-gradient(145deg,#1b3a65,#102542)!important;border:1px solid #42648f!important;color:#eaf4ff!important}
+.vehicle-carousel-card{padding:16px!important}
+.vehicle-directory-card{margin:9px 0!important}
+.vehicle-directory-card .vehicle-thumb{width:108px!important;height:88px!important;border-radius:14px!important}
+.vehicle-placeholder{display:grid;place-items:center;font-size:30px}
+.vehicle-hero{width:100%!important;max-height:270px!important;object-fit:cover!important;border-radius:18px!important;border:1px solid #3988d2!important;box-shadow:0 0 20px #087cff55!important}
+#vehicleProfileContent>h2{font-size:23px!important;margin:12px 0!important}
+#vehicleProfileContent>.home-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.history-entry,.history-shell .card{background:linear-gradient(145deg,#102b53,#071a36)!important;border-color:#35649b!important}
+.history-filter{background:#10294c!important;border-color:#416a9a!important;color:#edf6ff!important}
+.history-filter.active{background:linear-gradient(110deg,#087dff,#24aaff)!important;box-shadow:0 0 14px #087cff77!important}
+#reminders .card,#charts .card,#more .more-tile{background:linear-gradient(145deg,#102b53,#071a36)!important;border-color:#365b8c!important}
+#reminderList>.card{border-radius:17px!important}
+#expenseChart>div{border-bottom-color:#3575b8!important}
+#expenseChart>div>div>div{background:linear-gradient(180deg,#36baff,#087dff)!important;box-shadow:0 0 10px #087cff77!important}
+input,select,textarea{background:#071a36!important;border-color:#376393!important}
+.pill{box-shadow:0 0 8px #087cff22}
+@media(max-width:420px){.home-vehicle-photo,.home-vehicle-placeholder{height:165px!important}.dashboard-topline h2{font-size:31px!important}.dashboard-stat{padding:11px 8px!important}.dashboard-stat strong{font-size:20px!important}.dashboard-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+
 </style></head>
 <body>
-<header><h1>🚗 Mon Garage</h1><p>Le carnet d’entretien de tes véhicules, au même endroit.</p></header>
+<header class="garage-header"><div class="garage-brand-mark">⌂</div><div><h1>Mon Garage</h1><p>Carnet d’entretien complet</p></div><button class="garage-settings" type="button" onclick="showTab('more')" aria-label="Plus de fonctions">⚙</button></header>
 <main>
 <nav class="primary-nav" aria-label="Navigation">
 <button class="active" data-tab="home">Vue d’ensemble</button>
@@ -423,7 +487,7 @@ function renderVehiclePicker(){
  const input=$('vehicleSearch'), root=$('vehicleSearchResults'); if(!input||!root)return;
  const q=input.value.trim().toLocaleLowerCase('fr');
  if(!data.vehicles.length){root.innerHTML='<div class="empty">Aucun véhicule enregistré. Utilise le formulaire ci-dessous pour en ajouter un.</div>';return;}
- if(!q){root.innerHTML='<div class="empty">Tape un nom ou une immatriculation pour afficher les résultats.</div>';return;}
+ if(!q){root.innerHTML=data.vehicles.map(v=>`<div class="card quick-vehicle vehicle-directory-card">${v.photo?`<img class="vehicle-thumb" src="${v.photo}" alt="Photo de ${esc(v.name)}">`:'<div class="vehicle-thumb vehicle-placeholder">🚘</div>'}<div style="flex:1;min-width:0"><h3>${esc(v.name)}</h3><div class="muted">${esc([v.brand,v.model].filter(Boolean).join(' • '))}${v.plate?' • '+esc(v.plate):''}${v.km?' • '+Number(v.km).toLocaleString('fr-FR')+' km':''}</div></div><button class="primary" type="button" onclick="openVehicleProfile('${v.id}')">Ouvrir</button></div>`).join('');return;}
  const norm=s=>String(s||'').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
  const found=data.vehicles.filter(v=>[v.name,v.plate,v.brand,v.model].some(x=>norm(x).includes(norm(q))));
  root.innerHTML=found.length?found.map(v=>`<div class="card quick-vehicle">${v.photo?`<img class="vehicle-thumb" src="${v.photo}" alt="Photo de ${esc(v.name)}">`:''}<div style="flex:1;min-width:0"><h3>${esc(v.name)}</h3><div class="muted">${esc([v.brand,v.model].filter(Boolean).join(' • '))}${v.plate?' • '+esc(v.plate):''}</div></div><button class="primary" type="button" onclick="openVehicleProfile('${v.id}')">Ouvrir la fiche</button></div>`).join(''):'<div class="empty">Aucun véhicule ne correspond à cette recherche.</div>';
