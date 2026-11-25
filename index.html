@@ -446,6 +446,8 @@ header.garage-header{min-height:88px!important;padding:13px 16px!important;backg
 </div>
 <div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">À GARDER À L’ŒIL</span><h3>Prochains rappels</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('reminders')">Tout voir　↗</button></div>
 <div class="dashboard-reminders" id="upcoming"></div>
+<div class="dashboard-section-heading"><div><span class="dashboard-eyebrow">DERNIÈRES ACTIVITÉS</span><h3>Dernières interventions</h3></div><button type="button" class="dashboard-text-link" onclick="showTab('historyPicker')">Historique　↗</button></div>
+<div class="dashboard-recent" id="recentInterventions"></div>
 <div class="dashboard-shortcuts">
  <button type="button" onclick="showTab('historyPicker')"><span>◷</span>Historique</button>
  <button type="button" onclick="showTab('faults')"><span>⚠</span>Codes défauts</button>
@@ -696,7 +698,7 @@ $('reminderList').innerHTML=reminders.length?reminders.map(r=>`<div class="card"
 const priority={ 'En retard':0,'Kilométrage atteint':0,'Bientôt':1,'À prévoir':2 };
 const upcoming=data.reminders.slice().sort((a,b)=>(priority[dueState(a)]??2)-(priority[dueState(b)]??2)||(a.date||'9999').localeCompare(b.date||'9999')).slice(0,5);
 $('upcoming').innerHTML=upcoming.length?upcoming.map(r=>`<div style="padding:9px 0;border-bottom:1px solid var(--line)"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b>${esc(r.title)}</b><span class="pill ${reminderClass(r)}">${dueState(r)}</span></div><span class="muted">${esc(vehicle(r.vehicleId)?.name||'Véhicule')} • ${esc(reminderProgress(r))}</span></div>`).join(''):'<div class="empty">Pas de rappel pour le moment.</div>';
-const recentRoot=$('recentInterventions');if(recentRoot){const recent=[...(data.services||[]).map(x=>({...x,_type:'Entretien',_label:x.kind||'Entretien'})),...(data.logEntries||[]).map(x=>({...x,_type:'Réparation',_label:x.work||'Réparation'}))].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,4);recentRoot.innerHTML=recent.length?recent.map(x=>`<div style="padding:9px 0;border-bottom:1px solid var(--line)"><b>${esc(x._label)}</b><div class="muted">${esc(vehicle(x.vehicleId)?.name||'Véhicule')} • ${dateFR(x.date)}${x.km?' • '+Number(x.km).toLocaleString('fr-FR')+' km':''}</div><div>${euro(x.cost)}</div><button class="secondary" type="button" onclick="openVehicleProfile('${x.vehicleId}')">Ouvrir la fiche</button></div>`).join(''):'<div class="empty">Aucune intervention enregistrée pour le moment.</div>'; }
+const recentRoot=$('recentInterventions');if(recentRoot){const recent=[...(data.services||[]).map(x=>({...x,_type:'Entretien',_label:x.kind||'Entretien'})),...(data.logEntries||[]).map(x=>({...x,_type:'Réparation',_label:x.work||'Réparation'}))].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,4);recentRoot.innerHTML=recent.length?recent.map(x=>`<div style="padding:9px 0;border-bottom:1px solid var(--line)"><b>${esc(x._label)}</b><div class="muted">${esc(vehicle(x.vehicleId)?.name||'Véhicule')} • ${dateFR(x.date)}${x.km?' • '+Number(x.km).toLocaleString('fr-FR')+' km':''}</div><div>${euro(x.cost)}</div><button class="secondary" type="button" onclick="openVehicleHistory('${x.vehicleId}')">Voir l’historique</button></div>`).join(''):'<div class="empty">Aucune intervention enregistrée pour le moment.</div>'; }
 renderFaults();renderExpenseChart();
 if(selectedVehicleId && $('vehicleProfile').classList.contains('active')) renderVehicleProfile();
 }
