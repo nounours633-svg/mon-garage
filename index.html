@@ -404,6 +404,15 @@ header.garage-header{min-height:88px!important;padding:13px 16px!important;backg
 #vehicleProfileContent .profile-record-card{background:#102e55!important;border:1px solid #315d8c!important;border-radius:13px!important}
 @media(max-width:390px){#vehicleProfileContent .profile-spec-grid b{font-size:10px!important}#vehicleProfileContent .profile-spec-grid small{font-size:9px!important}#vehicleProfileContent .profile-action-grid{gap:5px!important}#vehicleProfileContent .profile-action-grid button{min-height:100px!important}#vehicleProfileContent .profile-action-grid button b{font-size:10px!important}#vehicleProfileContent .profile-deadlines{padding:8px!important}#vehicleProfileContent .profile-deadlines b{font-size:12px!important}}
 
+</style><style>
+#mgSharePreview{position:fixed;inset:0;z-index:99999;background:rgba(3,12,28,.82);display:flex;align-items:center;justify-content:center;padding:12px}
+.mg-preview-panel{background:#f5f7fb;color:#15243a;border-radius:18px;width:min(760px,100%);max-height:94vh;display:flex;flex-direction:column;overflow:hidden}
+.mg-preview-head{display:flex;justify-content:space-between;padding:14px;background:#0b2345;color:white}
+.mg-preview-head button{background:transparent;color:white;border:0;font-size:22px}
+.mg-preview-document{overflow:auto;padding:20px;background:white;margin:10px}
+.mg-preview-actions{display:flex;gap:8px;flex-wrap:wrap;padding:12px}
+.mg-preview-actions button{flex:1;min-width:110px;padding:12px;border:0;border-radius:9px;background:#087cff;color:white;font-weight:bold}
+@media print{body *{visibility:hidden!important}#mgSharePreview,#mgSharePreview *{visibility:visible!important}#mgSharePreview{position:absolute;inset:0;background:white;padding:0}.mg-preview-panel{width:100%;max-height:none;box-shadow:none}.mg-preview-head,.mg-preview-actions{display:none!important}.mg-preview-document{overflow:visible;margin:0;padding:12mm}.mg-print-entry{break-inside:avoid}}
 </style></head>
 <body>
 <header class="garage-header"><div class="garage-brand-mark">⌂</div><div><h1>Mon Garage</h1><p>Carnet d’entretien complet</p></div><button class="garage-settings" type="button" onclick="showTab('more')" aria-label="Plus de fonctions">⚙</button></header>
@@ -884,102 +893,46 @@ window.downloadLogbook=()=>{
  const vehicles=data.vehicles.filter(v=>filter==='all'||v.id===filter);
  const escFile=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  if(!vehicles.length){alert('Ajoute d’abord un véhicule.');return}
- let out='<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Carnet d’entretien - Mon Garage</title><style>body{font-family:Arial,sans-serif;margin:24px;color:#222}h1{color:#17324d}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border:1px solid #999;padding:7px;text-align:left;vertical-align:top}th{background:#eee}.vehicle{page-break-after:always}.vehicle:last-child{page-break-after:auto}.muted{color:#555}</style></head><body><h1>Mon Garage — Carnet d’entretien</h1><p>Document enregistré pour consultation, partage ou impression ultérieure.</p>';
+ let out='<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Carnet d’entretien - Mon Garage</title><style>body{font-family:Arial,sans-serif;margin:24px;color:#222}h1{color:#17324d}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border:1px solid #999;padding:7px;text-align:left;vertical-align:top}th{background:#eee}.vehicle{page-break-after:always}.vehicle:last-child{page-break-after:auto}</style></head><body><h1>Mon Garage — Carnet d’entretien</h1>';
  vehicles.forEach(v=>{
   const entries=[...(data.logEntries||[])].filter(x=>x.vehicleId===v.id).sort((a,b)=>(a.date||'').localeCompare(b.date||''));
   out+=`<section class="vehicle"><h2>${escFile(v.name||'Véhicule')}</h2><p><b>Marque / modèle :</b> ${escFile([v.brand,v.model].filter(Boolean).join(' ')||'—')}<br><b>Immatriculation :</b> ${escFile(v.plate||'—')}<br><b>Année :</b> ${escFile(v.year||'—')}<br><b>Kilométrage actuel :</b> ${escFile(v.km||'—')} km</p><h3>Historique des interventions</h3>`;
   if(!entries.length) out+='<p>Aucune intervention enregistrée.</p>';
-  else out+='<table><thead><tr><th>Date</th><th>Km</th><th>Travaux effectués</th><th>Pièces remplacées</th><th>Garage / personne</th><th>Prix</th><th>Remarques</th></tr></thead><tbody>'+entries.map(x=>`<tr><td>${escFile(dateFR(x.date))}</td><td>${escFile(x.km||'—')}</td><td>${escFile(x.work)}</td><td>${escFile(x.parts||'—')}</td><td>${escFile(x.provider||'—')}</td><td>${x.cost?escFile(euro(x.cost)):'—'}</td><td>${escFile(x.notes||'—')}</td></tr>`).join('')+'</tbody></table>';
+  else out+='<table><thead><tr><th>Date</th><th>Km</th><th>Travaux effectués</th><th>Pièces remplacées</th><th>Garage / personne</th><th>Prix</th><th>Remarques</th></tr></thead><tbody>'+entries.map(x=>`<tr><td>${escFile(dateFR(x.date))}</td><td>${escFile(x.km||'—')}</td><td>${escFile(x.work||'—')}</td><td>${escFile(x.parts||'—')}</td><td>${escFile(x.provider||'—')}</td><td>${x.cost?escFile(euro(x.cost)):'—'}</td><td>${escFile(x.notes||'—')}</td></tr>`).join('')+'</tbody></table>';
   out+='</section>';
  });
- out+='
-<script>
-(function(){
- const escPreview=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const moneyPreview=x=>x.cost!==''&&x.cost!=null?(typeof euro==='function'?euro(x.cost):String(x.cost)+' €'):'—';
- function previewOpen(title,html,text){
-  let modal=document.getElementById('mgSharePreview');
-  if(!modal){
-   modal=document.createElement('div');modal.id='mgSharePreview';modal.innerHTML='<div class="mg-preview-panel"><div class="mg-preview-head"><strong id="mgPreviewTitle"></strong><button type="button" id="mgPreviewClose" aria-label="Fermer">✕</button></div><div id="mgPreviewDocument" class="mg-preview-document"></div><div class="mg-preview-actions"><button type="button" id="mgPreviewPrint">Imprimer</button><button type="button" id="mgPreviewPdf">Enregistrer en PDF</button><button type="button" id="mgPreviewSms">Partager par SMS</button></div></div>';
-   document.body.appendChild(modal);
-   document.getElementById('mgPreviewClose').onclick=()=>modal.remove();
-   modal.addEventListener('click',e=>{if(e.target===modal)modal.remove()});
-   document.getElementById('mgPreviewPrint').onclick=()=>window.print();
-   document.getElementById('mgPreviewPdf').onclick=()=>window.print();
-   document.getElementById('mgPreviewSms').onclick=()=>{const body=encodeURIComponent(text);location.href='sms:?body='+body;};
-  }
-  document.getElementById('mgPreviewTitle').textContent=title;
-  document.getElementById('mgPreviewDocument').innerHTML=html;
-  modal.dataset.sms=text;
- }
- function vehicleHeader(v,title){
-  return '<h1>Mon Garage — '+escPreview(title)+'</h1><h2>'+escPreview(v.name||'Véhicule')+'</h2><p>'+escPreview([v.brand,v.model,v.year,v.plate].filter(Boolean).join(' • ')||'')+'</p><hr>';
- }
- function interventionHtml(x,isService,v){
-  const title=isService?(x.kind||'Entretien'):(x.work||'Réparation');
-  return '<section class="mg-print-entry"><h3>'+escPreview(title)+'</h3><p><b>Date :</b> '+escPreview(typeof dateFR==='function'?dateFR(x.date):x.date||'—')+'</p><p><b>Kilométrage :</b> '+escPreview(x.km||'—')+' km</p><p><b>Coût :</b> '+escPreview(moneyPreview(x))+'</p>'+
-   (isService?'<p><b>Détails / pièces utilisées :</b><br>'+escPreview(x.notes||'—').replace(/\n/g,'<br>')+'</p>':
-   '<p><b>Travaux effectués :</b><br>'+escPreview(x.work||'—').replace(/\n/g,'<br>')+'</p><p><b>Pièces remplacées :</b><br>'+escPreview(x.parts||'—').replace(/\n/g,'<br>')+'</p><p><b>Garage / personne :</b> '+escPreview(x.provider||'—')+'</p><p><b>Remarques :</b><br>'+escPreview(x.notes||'—').replace(/\n/g,'<br>')+'</p>')+
-   (!isService&&x.photo?'<p><img src="'+x.photo+'" alt="Photo de réparation" style="max-width:100%;max-height:280px;object-fit:contain"></p>':'')+'</section>';
- }
- function smsEntry(x,isService,v){
-  return 'Mon Garage — '+(isService?'Entretien':'Réparation')+'\nVéhicule : '+(v.name||'')+'\n'+[v.brand,v.model,v.plate].filter(Boolean).join(' • ')+'\nDate : '+(typeof dateFR==='function'?dateFR(x.date):x.date||'')+'\nIntervention : '+(isService?(x.kind||'Entretien'):(x.work||'Réparation'))+'\nKilométrage : '+(x.km||'—')+' km\nCoût : '+(x.cost?moneyPreview(x):'—')+'\n'+(isService?'Détails : '+(x.notes||'—'):'Travaux : '+(x.work||'—')+'\nPièces : '+(x.parts||'—')+'\nRéalisé par : '+(x.provider||'—')+'\nRemarques : '+(x.notes||'—'));
- }
- window.printServiceEntry=function(id){
-  const x=(data.services||[]).find(e=>e.id===id);if(!x){alert('Cet entretien est introuvable.');return;}
-  const v=vehicle(x.vehicleId)||{};previewOpen('Aperçu de l’entretien',vehicleHeader(v,'Fiche d’entretien')+interventionHtml(x,true,v),smsEntry(x,true,v));
- };
- window.printLogEntry=function(id){
-  const x=(data.logEntries||[]).find(e=>e.id===id);if(!x){alert('Cette réparation est introuvable.');return;}
-  const v=vehicle(x.vehicleId)||{};previewOpen('Aperçu de la réparation',vehicleHeader(v,'Fiche de réparation')+interventionHtml(x,false,v),smsEntry(x,false,v));
- };
- window.printVehicleHistory=function(vehicleId){
-  const v=vehicle(vehicleId);if(!v)return;
-  const entries=[...(data.services||[]).filter(x=>x.vehicleId===vehicleId).map(x=>({...x,_service:true})),...(data.logEntries||[]).filter(x=>x.vehicleId===vehicleId).map(x=>({...x,_service:false}))].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-  const html=vehicleHeader(v,'Historique des interventions')+(entries.length?entries.map(x=>interventionHtml(x,x._service,v)).join(''):'<p>Aucune intervention enregistrée.</p>');
-  const sms='Mon Garage — Historique de '+(v.name||'Véhicule')+'\n'+[v.brand,v.model,v.year,v.plate].filter(Boolean).join(' • ')+'\n'+(entries.length?entries.map(x=>(x._service?'Entretien : ':'Réparation : ')+(x.kind||x.work||'Intervention')+' — '+(x.date||'')+' — '+(x.km||'—')+' km — '+(x.cost?moneyPreview(x):'—')).join('\n'):'Aucune intervention enregistrée.');
-  previewOpen('Aperçu de l’historique',html,sms);
- };
- window.printLogbook=function(){
-  const filter=document.getElementById('logFilter')?.value||'all';
-  const vehicles=(data.vehicles||[]).filter(v=>filter==='all'||v.id===filter);
-  if(!vehicles.length){alert('Ajoute d’abord un véhicule.');return;}
-  let html='',sms='Mon Garage — Carnet d’entretien\n';
-  vehicles.forEach(v=>{
-   const entries=(data.logEntries||[]).filter(x=>x.vehicleId===v.id).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-   html+=vehicleHeader(v,'Carnet d’entretien')+(entries.length?entries.map(x=>interventionHtml(x,false,v)).join(''):'<p>Aucune intervention enregistrée.</p>');
-   sms+='\n'+(v.name||'Véhicule')+'\n'+(entries.length?entries.map(x=>(x.work||'Réparation')+' — '+(x.date||'')+' — '+(x.km||'—')+' km').join('\n'):'Aucune intervention enregistrée.')+'\n';
-  });
-  previewOpen('Aperçu du carnet',html,sms);
- };
-})();
-</script>
-<style>
-#mgSharePreview{position:fixed;inset:0;z-index:99999;background:rgba(3,12,28,.78);display:flex;align-items:center;justify-content:center;padding:12px}
-.mg-preview-panel{background:#f5f7fb;color:#15243a;border-radius:18px;width:min(760px,100%);max-height:94dvh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 18px 60px #0008}
-.mg-preview-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0b2345;color:white}
-.mg-preview-head button{background:transparent;border:0;color:white;font-size:22px;padding:4px 8px}
-.mg-preview-document{overflow:auto;padding:22px;background:white;margin:12px;border-radius:10px;min-height:180px}
-.mg-preview-document h1{font-size:22px;color:#102b50}.mg-preview-document h2{font-size:18px}.mg-preview-document h3{font-size:16px;margin:18px 0 8px}.mg-preview-document p{margin:7px 0;line-height:1.45}.mg-print-entry{border-bottom:1px solid #d8e0eb;padding:0 0 12px;margin-bottom:14px}
-.mg-preview-actions{display:flex;gap:8px;flex-wrap:wrap;padding:12px 14px;background:#edf1f7}
-.mg-preview-actions button{flex:1;min-width:120px;border:0;border-radius:10px;padding:12px 9px;font-weight:700;background:#087cff;color:white}
-.mg-preview-actions button:nth-child(2){background:#18385f}.mg-preview-actions button:nth-child(3){background:#16845b}
-@media print{
- body *{visibility:hidden!important}
- #mgSharePreview,#mgSharePreview *{visibility:visible!important}
- #mgSharePreview{position:absolute!important;inset:0!important;display:block!important;background:white!important;padding:0!important}
- .mg-preview-panel{width:100%!important;max-height:none!important;box-shadow:none!important;border-radius:0!important;overflow:visible!important}
- .mg-preview-head,.mg-preview-actions{display:none!important}
- .mg-preview-document{overflow:visible!important;margin:0!important;padding:12mm!important}
- .mg-print-entry{break-inside:avoid}
-}
-</style>
-</body></html>';
- const blob=new Blob([out],{type:'text/html;charset=utf-8'});
- const url=URL.createObjectURL(blob);
+ out+='</body></html>';
+ const blob=new Blob([out],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);
  const a=document.createElement('a');a.href=url;a.download='carnet-entretien-mon-garage.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
- alert('Le carnet a été enregistré dans les téléchargements. Tu peux le consulter ou le partager sans ouvrir l’imprimante.');
 };
+(function(){
+ const ep=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const money=x=>x.cost!==''&&x.cost!=null?euro(x.cost):'—';
+ function openPreview(title,html,sms){
+  let modal=$('mgSharePreview');
+  if(!modal){
+   modal=document.createElement('div');modal.id='mgSharePreview';
+   modal.innerHTML='<div class="mg-preview-panel"><div class="mg-preview-head"><strong id="mgPreviewTitle"></strong><button type="button" id="mgPreviewClose">✕</button></div><div id="mgPreviewDocument" class="mg-preview-document"></div><div class="mg-preview-actions"><button type="button" id="mgPreviewPrint">Imprimer</button><button type="button" id="mgPreviewPdf">Enregistrer en PDF</button><button type="button" id="mgPreviewSms">Partager par SMS</button></div></div>';
+   document.body.appendChild(modal);
+   $('mgPreviewClose').onclick=()=>modal.remove();
+   modal.addEventListener('click',e=>{if(e.target===modal)modal.remove()});
+   $('mgPreviewPrint').onclick=()=>window.print();
+   $('mgPreviewPdf').onclick=()=>window.print();
+   $('mgPreviewSms').onclick=()=>{location.href='sms:?body='+encodeURIComponent(modal.dataset.sms||'')};
+  }
+  $('mgPreviewTitle').textContent=title;$('mgPreviewDocument').innerHTML=html;modal.dataset.sms=sms;
+ }
+ function header(v,t){return '<h1>Mon Garage — '+ep(t)+'</h1><h2>'+ep(v.name||'Véhicule')+'</h2><p>'+ep([v.brand,v.model,v.year,v.plate].filter(Boolean).join(' • '))+'</p><hr>'}
+ function entry(x,service){
+  return '<section class="mg-print-entry"><h3>'+ep(service?(x.kind||'Entretien'):(x.work||'Réparation'))+'</h3><p><b>Date :</b> '+ep(dateFR(x.date))+'</p><p><b>Kilométrage :</b> '+ep(x.km||'—')+' km</p><p><b>Coût :</b> '+ep(money(x))+'</p>'+
+   (service?'<p><b>Détails :</b><br>'+ep(x.notes||'—').replace(/\n/g,'<br>')+'</p>':'<p><b>Travaux :</b><br>'+ep(x.work||'—').replace(/\n/g,'<br>')+'</p><p><b>Pièces :</b><br>'+ep(x.parts||'—').replace(/\n/g,'<br>')+'</p><p><b>Garage / personne :</b> '+ep(x.provider||'—')+'</p><p><b>Remarques :</b><br>'+ep(x.notes||'—').replace(/\n/g,'<br>')+'</p>')+
+   (!service&&x.photo?'<p><img src="'+x.photo+'" style="max-width:100%;max-height:260px" alt="Photo"></p>':'')+'</section>';
+ }
+ function sms(x,service,v){return 'Mon Garage — '+(service?'Entretien':'Réparation')+'\nVéhicule : '+(v.name||'')+'\nDate : '+(x.date||'')+'\nIntervention : '+(service?(x.kind||'Entretien'):(x.work||'Réparation'))+'\nKilométrage : '+(x.km||'—')+' km\nCoût : '+money(x)+'\n'+(x.notes||'')}
+ window.printServiceEntry=id=>{const x=(data.services||[]).find(e=>e.id===id);if(!x){alert('Cet entretien est introuvable.');return}const v=vehicle(x.vehicleId)||{};openPreview('Aperçu de l’entretien',header(v,'Fiche d’entretien')+entry(x,true),sms(x,true,v))};
+ window.printLogEntry=id=>{const x=(data.logEntries||[]).find(e=>e.id===id);if(!x){alert('Cette réparation est introuvable.');return}const v=vehicle(x.vehicleId)||{};openPreview('Aperçu de la réparation',header(v,'Fiche de réparation')+entry(x,false),sms(x,false,v))};
+ window.printVehicleHistory=id=>{const v=vehicle(id);if(!v)return;const rows=[...(data.services||[]).filter(x=>x.vehicleId===id).map(x=>({...x,_s:true})),...(data.logEntries||[]).filter(x=>x.vehicleId===id).map(x=>({...x,_s:false}))].sort((a,b)=>(b.date||'').localeCompare(a.date||''));const html=header(v,'Historique des interventions')+(rows.length?rows.map(x=>entry(x,x._s)).join(''):'<p>Aucune intervention enregistrée.</p>');const msg='Mon Garage — Historique de '+(v.name||'Véhicule')+'\n'+rows.map(x=>(x._s?'Entretien : ':'Réparation : ')+(x.kind||x.work||'Intervention')+' — '+(x.date||'')+' — '+(x.km||'—')+' km').join('\n');openPreview('Aperçu de l’historique',html,msg)};
+})();
 
 async function compressPhoto(file){if(!file)return '';if(!file.type.startsWith('image/'))throw new Error('Choisis un fichier image.');return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=()=>reject(new Error('Lecture de la photo impossible.'));reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error('Image illisible.'));img.onload=()=>{const max=1000,scale=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',0.72));};img.src=reader.result;};reader.readAsDataURL(file);});}
 $('logForm').addEventListener('submit',async e=>{
