@@ -971,12 +971,9 @@ window.searchPartsOnline=function(vehicleId){
  const summary=$('partsSearchSummary');
  if(summary)summary.textContent='Véhicule sélectionné : '+[v.name,v.brand,v.model,v.year,v.plate].filter(Boolean).join(' • ')+'. Choisis directement un vendeur ci-dessous.';
 };
-window.printVehicleHistory=function(vehicleId){
- const v=vehicle(vehicleId); if(!v)return;
- const rows=[...data.services.filter(x=>x.vehicleId===vehicleId).map(x=>({date:x.date,title:x.kind,desc:x.notes,cost:x.cost,km:x.km,type:'Entretien'})),...(data.logEntries||[]).filter(x=>x.vehicleId===vehicleId).map(x=>({date:x.date,title:x.work,desc:[x.parts,x.notes].filter(Boolean).join(' — '),cost:x.cost,km:x.km,type:'Réparation'}))].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
- const w=window.open('','_blank'); if(!w){alert('Autorise les fenêtres contextuelles pour imprimer.');return;}
- w.document.write('<html lang="fr"><meta charset="utf-8"><title>Historique '+String(v.name).replace(/</g,'')+'</title><body style="font-family:Arial;padding:20px"><h1>Mon Garage — '+String(v.name).replace(/</g,'&lt;')+'</h1><p>'+[v.brand,v.model,v.year,v.plate].filter(Boolean).join(' • ')+'</p><h2>Historique d’entretien et réparations</h2><table border="1" cellspacing="0" cellpadding="7" style="border-collapse:collapse;width:100%"><tr><th>Date</th><th>Type</th><th>Intervention</th><th>Km</th><th>Coût</th><th>Détails</th></tr>'+rows.map(x=>'<tr><td>'+String(x.date||'').replace(/</g,'&lt;')+'</td><td>'+x.type+'</td><td>'+String(x.title||'').replace(/</g,'&lt;')+'</td><td>'+String(x.km||'')+'</td><td>'+String(x.cost||'')+' €</td><td>'+String(x.desc||'').replace(/</g,'&lt;')+'</td></tr>').join('')+'</table><script>window.onload=()=>window.print()<\/script></body></html>');w.document.close();
-};
+// La fonction printVehicleHistory du module d’aperçu plus haut est conservée :
+// elle affiche l’historique dans Mon Garage sans ouvrir automatiquement l’imprimante.
+
 window.searchEverything=function(query){
  const root=document.getElementById('generalSearchResults'); if(!root)return;
  const q=(query||'').trim().toLocaleLowerCase('fr');
