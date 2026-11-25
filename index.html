@@ -365,6 +365,7 @@ header.garage-header{min-height:88px!important;padding:13px 16px!important;backg
 #more .more-tile{background:linear-gradient(145deg,#12335d,#091a34)!important;border:1px solid #3478b9!important;border-radius:16px!important}
 @media(max-width:420px){.home-vehicle-photo,.home-vehicle-placeholder{height:172px!important;max-height:172px!important;flex-basis:172px!important}.home-vehicle-controls{gap:7px!important}.home-vehicle-controls .vehicle-carousel-dots{gap:5px!important}.dashboard-stat strong{font-size:20px!important}.dashboard-stat{padding:10px 8px!important}}
 
+.home-vehicle-image-button{display:block!important;width:100%!important;padding:0!important;margin:0!important;border:0!important;background:transparent!important;cursor:pointer!important;overflow:hidden!important;box-shadow:none!important;border-radius:0!important}.home-vehicle-image-button .home-vehicle-photo{display:block!important;width:100%!important;height:190px!important;max-height:190px!important;object-fit:cover!important;border-radius:0!important;flex:none!important}.home-vehicle-image-button.home-vehicle-placeholder{height:190px!important;max-height:190px!important;font-size:45px!important}
 </style></head>
 <body>
 <header class="garage-header"><div class="garage-brand-mark">⌂</div><div><h1>Mon Garage</h1><p>Carnet d’entretien complet</p></div><button class="garage-settings" type="button" onclick="showTab('more')" aria-label="Plus de fonctions">⚙</button></header>
@@ -597,8 +598,8 @@ function renderHomeVehicleCarousel(){
   const details=[v.brand,v.model,v.year].filter(Boolean).map(esc).join(' • ');
   const badge=alerts?'<span class="vehicle-bell-count">'+alerts+'</span>':'';
   const bell=alerts?'<button class="home-vehicle-bell has-alert" type="button" aria-label="'+alerts+' rappel(s) à surveiller" title="'+alerts+' rappel(s) à surveiller" onclick="showTab(&quot;reminders&quot;)">🔔'+badge+'</button>':'';
-  return '<article class="home-vehicle-slide">'+(v.photo?'<img class="home-vehicle-photo" src="'+v.photo+'" alt="Photo de '+esc(v.name)+'">':'<div class="home-vehicle-placeholder" aria-hidden="true">🚘</div>')+
-   '<div class="home-vehicle-info"><h4>'+esc(v.name||'Véhicule')+'</h4><p>'+details+(v.plate?' • '+esc(v.plate):'')+(v.km?'\n'+Number(v.km).toLocaleString('fr-FR')+' km':'')+'</p><div class="home-vehicle-actions"><button class="primary" type="button" onclick="openVehicleProfile(&quot;'+v.id+'&quot;)">Ouvrir la fiche</button>'+bell+'</div></div></article>';
+  return '<article class="home-vehicle-slide">'+(v.photo?'<button class="home-vehicle-image-button" type="button" onclick="openVehicleProfile(&quot;'+v.id+'&quot;)"><img class="home-vehicle-photo" src="'+v.photo+'" alt="Ouvrir la fiche de '+esc(v.name)+'"></button>':'<button class="home-vehicle-image-button home-vehicle-placeholder" type="button" onclick="openVehicleProfile(&quot;'+v.id+'&quot;)">🚘</button>')+
+   '<div class="home-vehicle-info"><h4>'+esc(v.name||'Véhicule')+'</h4><p>'+details+(v.plate?' • '+esc(v.plate):'')+(v.km?'\n'+Number(v.km).toLocaleString('fr-FR')+' km':'')+'</p><div class="home-vehicle-actions">'+bell+'</div></div></article>';
  }).join('');
  if(counter)counter.textContent='1 / '+list.length;
  if(dots)dots.innerHTML=list.map((v,i)=>'<button type="button" class="vehicle-carousel-dot '+(i===0?'active':'')+'" aria-label="Afficher le véhicule '+(i+1)+'" onclick="goToHomeVehicle('+i+')"></button>').join('');
