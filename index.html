@@ -162,7 +162,7 @@ button.primary,button.secondary,button.danger{border-radius:13px!important;trans
 .vehicle-bell-count{position:absolute;right:-5px;top:-6px;min-width:16px;height:16px;padding:0 4px;border-radius:20px;background:#e7b84c;color:#172033;font-size:9px;font-weight:900;display:grid;place-items:center}
 .vehicle-carousel-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px}
 .vehicle-carousel-controls>button{width:34px;height:32px;padding:0;font-size:22px;line-height:1}
-.vehicle-carousel-dots{display:flex;align-items:center;justify-content:center;gap:6px}
+.vehicle-carousel-dots{display:flex;align-items:center;justify-content:flex-start;gap:6px;flex:0 1 auto;width:min(270px,calc(100vw - 112px));max-width:270px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;scroll-snap-type:x proximity;touch-action:pan-x}.vehicle-carousel-dots::-webkit-scrollbar{display:none}
 .vehicle-carousel-dot{width:48px;height:48px;flex:0 0 48px;overflow:hidden;border:1px solid #53647b;border-radius:11px;padding:2px;background:#14243b;display:grid;place-items:center;color:#dce8f8;font-size:22px}
 .vehicle-carousel-dot img{width:100%;height:100%;display:block;object-fit:cover;border-radius:8px}
 .vehicle-carousel-dot.active{width:52px;height:52px;flex-basis:52px;border:2px solid #d4e5ff;box-shadow:0 0 14px #168bff99;background:#d4dfed}
@@ -719,7 +719,7 @@ window.updateHistoryVehicleCarousel=function(){
  const count=track.querySelectorAll('.vehicle-carousel-slide').length;if(!count)return;
  historyVehicleIndex=Math.max(0,Math.min(count-1,Math.round(el.scrollLeft/Math.max(1,el.clientWidth))));
  if(counter)counter.textContent=(historyVehicleIndex+1)+' / '+count;
- if(dots)[...dots.children].forEach((d,i)=>d.classList.toggle('active',i===historyVehicleIndex));
+ if(dots){[...dots.children].forEach((d,i)=>d.classList.toggle('active',i===historyVehicleIndex));dots.scrollTo({left:Math.max(0,historyVehicleIndex*54-54),behavior:'smooth'});}
 };
 window.moveHistoryVehicleCarousel=function(direction){const el=$('historyVehicleWindow');if(el)el.scrollTo({left:el.scrollLeft+direction*el.clientWidth,behavior:'smooth'});};
 window.goToHistoryVehicle=function(index){const el=$('historyVehicleWindow');if(el)el.scrollTo({left:index*el.clientWidth,behavior:'smooth'});};
