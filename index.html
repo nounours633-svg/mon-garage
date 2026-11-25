@@ -467,14 +467,7 @@ header.garage-header{min-height:88px!important;padding:13px 16px!important;backg
  .dashboard-shortcuts-compact button{min-height:55px!important;font-size:6.7px!important}
 }
 </style>
-<style id="dashboard-futuristic-car-v37">
-.dashboard-car-hero{position:relative;height:112px;margin:0 0 9px;overflow:hidden;border:1px solid rgba(54,151,239,.5);border-radius:15px;background:radial-gradient(ellipse at 50% 70%,#123d70 0%,#0b2342 48%,#07162b 100%);box-shadow:inset 0 1px 0 #9edbff22,0 5px 18px #007bff20}
-.dashboard-car-glow{position:absolute;inset:10% 12%;background:#087cff;filter:blur(35px);opacity:.2}
-.dashboard-car-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(1.02)}
-.dashboard-car-caption{position:absolute;left:11px;bottom:7px;display:flex;gap:7px;align-items:center;font-size:6px;letter-spacing:1.5px;color:#b8d5f3;text-shadow:0 1px 4px #001}
-.dashboard-car-caption b{color:#61caff;font-size:6px;letter-spacing:1px}
-@media(max-width:390px){.dashboard-car-hero{height:96px;margin-bottom:7px}.dashboard-car-caption{font-size:5px}}
-</style></head>
+</head>
 <body>
 <header class="garage-header"><div class="garage-brand-mark">⌂</div><div><h1>Mon Garage</h1><p>Carnet d’entretien complet</p></div><button class="garage-settings" type="button" onclick="showTab('more')" aria-label="Plus de fonctions">⚙</button></header>
 <main>
@@ -489,41 +482,6 @@ header.garage-header{min-height:88px!important;padding:13px 16px!important;backg
 </nav>
 
 <section id="home" class="panel active dashboard-home">
-<div class="dashboard-car-hero" aria-label="Illustration futuriste d’une voiture sportive bleue">
- <div class="dashboard-car-glow"></div>
- <svg class="dashboard-car-art" viewBox="0 0 760 250" role="img" aria-label="Voiture futuriste bleue lumineuse">
-  <defs>
-   <linearGradient id="carBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8eaff"/><stop offset=".18" stop-color="#168cff"/><stop offset=".52" stop-color="#073c83"/><stop offset=".78" stop-color="#06172d"/><stop offset="1" stop-color="#36c8ff"/></linearGradient>
-   <linearGradient id="carGlass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5abfff"/><stop offset=".5" stop-color="#07162b"/><stop offset="1" stop-color="#020a17"/></linearGradient>
-   <linearGradient id="carLight" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff"/><stop offset=".45" stop-color="#54dfff"/><stop offset="1" stop-color="#087cff"/></linearGradient>
-   <filter id="carGlow"><feGaussianBlur stdDeviation="7"/></filter>
-  </defs>
-  <path d="M24 190 C155 165 235 167 330 174 S570 184 735 150" fill="none" stroke="#087cff" stroke-width="4" opacity=".65" filter="url(#carGlow)"/>
-  <path d="M38 205 C175 192 245 192 340 197 S580 205 730 181" fill="none" stroke="#42d9ff" stroke-width="2" opacity=".8"/>
-  <ellipse cx="390" cy="210" rx="300" ry="17" fill="#087cff" opacity=".23" filter="url(#carGlow)"/>
-  <path d="M91 174 L132 144 Q176 128 240 119 L300 69 Q328 47 386 45 L500 53 Q544 58 585 105 L659 132 Q692 145 704 173 L684 190 L104 192 Z" fill="url(#carBody)" stroke="#77dfff" stroke-width="2"/>
-  <path d="M265 119 L319 74 Q338 59 382 59 L491 66 Q523 70 554 111 Z" fill="url(#carGlass)" stroke="#5bbcff" stroke-width="2"/>
-  <path d="M387 61 L385 116 L556 116" fill="none" stroke="#2e9fe8" stroke-width="2" opacity=".7"/>
-  <path d="M119 159 Q177 137 252 132 L282 122 L260 151 L143 172 Z" fill="#06172c" opacity=".8"/>
-  <path d="M101 164 L220 146 L246 150 L222 160 L117 178 Z" fill="#07182d" stroke="#1b8fe8" stroke-width="2"/>
-  <path d="M116 162 L215 148 L237 150 L217 155 L120 170 Z" fill="url(#carLight)" filter="url(#carGlow)"/>
-  <path d="M116 162 L215 148 L237 150 L217 155 L120 170 Z" fill="none" stroke="#a8f3ff" stroke-width="3"/>
-  <path d="M568 125 L649 145 L674 163 L592 151 Z" fill="#06162a" stroke="#248fe0" stroke-width="2"/>
-  <path d="M592 149 L668 160" stroke="#64eaff" stroke-width="4" stroke-linecap="round"/>
-  <path d="M303 177 L573 177 L619 190 L246 192 Z" fill="#020914" stroke="#147bd0" stroke-width="2"/>
-  <path d="M273 187 L596 187" stroke="#39cfff" stroke-width="3" opacity=".8"/>
-  <circle cx="238" cy="183" r="44" fill="#020914" stroke="#1c9fe9" stroke-width="5"/>
-  <circle cx="238" cy="183" r="29" fill="#102b48" stroke="#82dfff" stroke-width="3"/>
-  <circle cx="238" cy="183" r="9" fill="#8eeaff"/>
-  <path d="M238 156 V210 M211 183 H265 M219 164 L257 202 M257 164 L219 202" stroke="#3b9dd8" stroke-width="3"/>
-  <circle cx="590" cy="183" r="44" fill="#020914" stroke="#1c9fe9" stroke-width="5"/>
-  <circle cx="590" cy="183" r="29" fill="#102b48" stroke="#82dfff" stroke-width="3"/>
-  <circle cx="590" cy="183" r="9" fill="#8eeaff"/>
-  <path d="M590 156 V210 M563 183 H617 M571 164 L609 202 M609 164 L571 202" stroke="#3b9dd8" stroke-width="3"/>
-  <path d="M281 122 Q365 105 548 124" fill="none" stroke="#b3edff" stroke-width="2" opacity=".65"/>
- </svg>
- <div class="dashboard-car-caption"><span>MON GARAGE</span><b>PRÊT À PRENDRE LA ROUTE</b></div>
-</div>
 <div class="dashboard-topline">
  <div><span class="dashboard-eyebrow">MON GARAGE</span><h2>Vue d’ensemble</h2><p>Ton garage en un coup d’œil.</p></div>
  <button id="dashboardBell" class="dashboard-bell" type="button" aria-label="Ouvrir les rappels" onclick="showTab('reminders')">♧<i></i></button>
